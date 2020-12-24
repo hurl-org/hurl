@@ -1,0 +1,29 @@
+{
+  "name": "gator",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "gator": "out/cli/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gator-org/gator.git"
+  },
+  "homepage": "https://github.com/gator-org/gator#readme",
+  "author": "Yash Totale",
+  "license": "MIT",
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/gator-org/gators/issues"
+  },
+  "files": [],
+  "dependencies": {
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "@types/yargs": "^15.0.12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
