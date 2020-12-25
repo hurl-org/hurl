@@ -11,25 +11,20 @@ import { Config } from "./types";
 const createConfig = async (config: Config) => {
   const { format, ...rest } = config;
 
-  try {
-    await mkdir(join(".gator"));
-    logger.success("Created .gator directory!", true);
-    switch (format) {
-      case "JSON": {
-        createJsonConfig(rest);
-        break;
-      }
-      case "JavaScript": {
-        createJavaScriptConfig(rest);
-        break;
-      }
-      default: {
-        throw new Error("Can't write to unknown file type.");
-      }
+  await mkdir(join(".gator"));
+  logger.success("Created .gator directory!", true);
+  switch (format) {
+    case "JSON": {
+      createJsonConfig(rest);
+      break;
     }
-  } catch (e) {
-    logger.error(e);
-    process.exit(1);
+    case "JavaScript": {
+      createJavaScriptConfig(rest);
+      break;
+    }
+    default: {
+      throw new Error("Can't write to unknown file type.");
+    }
   }
 };
 

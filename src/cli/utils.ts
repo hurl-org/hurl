@@ -1,7 +1,7 @@
 // Node
 import { promisify } from "util";
 import { promises } from "fs";
-export const { readdir, mkdir, writeFile } = promises;
+export const { readdir, readFile, mkdir, writeFile } = promises;
 
 // Externals
 import rimraf from "rimraf";

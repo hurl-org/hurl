@@ -18,7 +18,7 @@ const configEnquirer = async () => {
     {
       name: "languages",
       type: "multiselect",
-      message: "What languages/frameworks do you wish to create templates for?",
+      message: "What languages/frameworks do you want to create templates for?",
       initial: 0,
       hint:
         "(Press <space> to select, <a> to toggle all, <i> to invert selection)",
