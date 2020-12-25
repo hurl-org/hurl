@@ -1,6 +1,6 @@
 import { prompt } from "enquirer";
 
-import { readdir, rimrafPromise, logger } from "./index";
+import { readdir, rimrafPromise, logger } from "../utils";
 
 const checkExistingConfig = async () => {
   try {

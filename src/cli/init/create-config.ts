@@ -1,12 +1,12 @@
 // Node
 import { join } from "path";
-import { mkdir, writeFile } from "./index";
+import { mkdir, writeFile } from "../utils";
 
 // Internals
-import { logger } from "./index";
+import { logger } from "../utils";
 
 // Types
-import { Config, Format } from "./index";
+import { Config, Format } from "./types";
 
 const createConfig = async (config: Config) => {
   const extension =

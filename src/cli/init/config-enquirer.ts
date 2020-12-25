@@ -2,7 +2,7 @@
 import { prompt } from "enquirer";
 
 // Types
-import { Config, Format, Language } from "./index";
+import { Config, Format, Language } from "./types";
 
 const configEnquirer = async () => {
   const config: Config = await prompt([

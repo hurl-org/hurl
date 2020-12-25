@@ -4,7 +4,7 @@ import configEnquirer from "./config-enquirer";
 import createConfig from "./create-config";
 
 // Types
-import { Handler, Config, Language, Format } from "./index";
+import { Handler, Config, Language, Format } from "./types";
 
 interface InitArgs {
   skip: boolean;
