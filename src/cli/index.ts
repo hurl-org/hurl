@@ -1,7 +1,8 @@
-import yargs from "yargs";
+#!/usr/bin/env node
+import yargs from "yargs/yargs";
 import init from "./init";
 
-yargs
+yargs(process.argv.slice(2))
   .command(
     ["init", "initialize"],
     "Initialize Gator",
@@ -19,6 +20,6 @@ yargs
   .demandCommand(1, "")
   .recommendCommands()
   .strict()
-  .version("1.0.0");
+  .version("1.0.0").argv;
 
 export type Handler<T> = (args: T) => void | Promise<void>;
