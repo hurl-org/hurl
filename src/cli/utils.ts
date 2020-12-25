@@ -15,4 +15,5 @@ export const logger = {
     console.log(red("Gator ERROR"));
     console.error(err);
   },
+  line: (str: string) => console.log(`\n${str}`),
 };
