@@ -16,9 +16,8 @@ const checkExistingConfig = async () => {
     if (!response.proceed) process.exit(0); // User chooses to keep existing config
 
     try {
-      console.log("\nRemoving .gator directory...");
       await rimrafPromise(".gator");
-      logger.success("Removed .gator directory!\n");
+      logger.success("Removed existing .gator directory!", true);
     } catch (e) {
       logger.error(e);
       process.exit(1);

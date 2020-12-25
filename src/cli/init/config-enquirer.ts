@@ -4,6 +4,15 @@ import { prompt } from "enquirer";
 // Types
 import { Config, Format, Language } from "./types";
 
+const ALL_LANGUAGES: Language[] = [
+  "JavaScript",
+  "TypeScript",
+  "React (JavaScript)",
+  "React (TypeScript)",
+];
+
+const ALL_FORMATS: Format[] = ["JSON", "JavaScript"];
+
 const configEnquirer = async () => {
   const config: Config = await prompt([
     {
@@ -13,7 +22,7 @@ const configEnquirer = async () => {
       initial: 0,
       hint:
         "(Press <space> to select, <a> to toggle all, <i> to invert selection)",
-      choices: Object.values(Language).map((language) => ({ name: language })),
+      choices: ALL_LANGUAGES.map((language) => ({ name: language })),
     },
     {
       name: "prefix",
@@ -26,7 +35,7 @@ const configEnquirer = async () => {
       type: "select",
       message: "What format do you want your config file to be in?",
       initial: 0,
-      choices: Object.values(Format).map((format) => ({ name: format })),
+      choices: ALL_FORMATS.map((format) => ({ name: format })),
     },
   ]);
 

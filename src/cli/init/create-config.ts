@@ -6,22 +6,21 @@ import { mkdir, writeFile } from "../utils";
 import { logger } from "../utils";
 
 // Types
-import { Config, Format } from "./types";
+import { Config } from "./types";
 
 const createConfig = async (config: Config) => {
   const { format, ...rest } = config;
 
   try {
-    logger.line("Creating .gator directory...");
     await mkdir(join(".gator"));
-    logger.success("Created .gator directory!");
+    logger.success("Created .gator directory!", true);
     switch (format) {
-      case Format.JSON: {
-        await createJsonConfig(rest);
+      case "JSON": {
+        createJsonConfig(rest);
         break;
       }
-      case Format.JavaScript: {
-        await createJavaScriptConfig(rest);
+      case "JavaScript": {
+        createJavaScriptConfig(rest);
         break;
       }
       default: {
@@ -37,23 +36,21 @@ const createConfig = async (config: Config) => {
 type ConfigObject = Omit<Config, "format">;
 
 const createJsonConfig = async (config: ConfigObject) => {
-  logger.line("Creating .gator.json file...");
   await writeFile(
     join(".gator", ".gator.json"),
     JSON.stringify(config, null, 2),
     "utf-8"
   );
-  logger.success("Created .gator.json file!");
+  logger.success("Created .gator.json file!", true);
 };
 
 const createJavaScriptConfig = async (config: ConfigObject) => {
-  logger.line("Creating .gator.js file...");
   await writeFile(
     join(".gator", ".gator.js"),
     `module.exports = ${JSON.stringify(config, null, 2)}`,
     "utf-8"
   );
-  logger.success("Created .gator.js file!");
+  logger.success("Created .gator.js file!", true);
 };
 
 export default createConfig;

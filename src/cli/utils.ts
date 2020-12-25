@@ -10,7 +10,10 @@ export const rimrafPromise = promisify(rimraf);
 import { green, red } from "chalk";
 
 export const logger = {
-  success: (str: string) => console.log(green(str)),
+  success: (str: string, line = false) => {
+    const colored = green(str);
+    line ? logger.line(colored) : console.log(colored);
+  },
   error: (err: Error) => {
     console.log(red("Gator ERROR"));
     console.error(err);

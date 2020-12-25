@@ -1,14 +1,10 @@
-export enum Language {
-  JavaScript = "JavaScript",
-  TypeScript = "TypeScript",
-  "React (JavaScript)" = "React (JavaScript)",
-  "React (TypeScript)" = "React (TypeScript)",
-}
+export type Language =
+  | "JavaScript"
+  | "TypeScript"
+  | "React (JavaScript)"
+  | "React (TypeScript)";
 
-export enum Format {
-  JSON = "JSON",
-  JavaScript = "JavaScript",
-}
+export type Format = "JSON" | "JavaScript";
 
 export interface Config {
   languages: Language[];
