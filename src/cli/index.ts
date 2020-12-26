@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Externals
 import yargs from "yargs/yargs";
 
@@ -43,6 +41,11 @@ yargs(process.argv.slice(2))
           alias: "t",
           demandOption: true,
           string: true,
+        })
+        .option("confirm", {
+          description: "Should confirm when overriding an existing file",
+          boolean: true,
+          default: true,
         })
         .strict(false);
     },

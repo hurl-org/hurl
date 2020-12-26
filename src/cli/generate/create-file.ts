@@ -12,15 +12,23 @@ import { DEFAULT_VARIABLES, TEMPLATES_PATH } from "../constants";
 // Types
 import { ConfigFileContents } from "../types";
 
-interface CreateFileArgs extends Record<string, string> {
+interface CreateFileArgs extends Record<string, any> {
   template: string;
   templateWithoutExt: string;
   path: string;
   pathWithoutExt: string;
+  confirm: boolean;
 }
 
 const createFile = async (config: ConfigFileContents, args: CreateFileArgs) => {
-  const { template, templateWithoutExt, path, pathWithoutExt, ...vars } = args;
+  const {
+    template,
+    templateWithoutExt,
+    path,
+    pathWithoutExt,
+    confirm,
+    ...vars
+  } = args;
   const { prefix } = config;
 
   const defaults: Record<typeof DEFAULT_VARIABLES[number], string> = {
@@ -34,7 +42,7 @@ const createFile = async (config: ConfigFileContents, args: CreateFileArgs) => {
 
   const newVars = { ...vars, ...defaults };
 
-  if (!(await checkExistingFile(path))) return;
+  if (confirm && !(await checkExistingFile(path))) return;
 
   let content = await readFile(join(TEMPLATES_PATH, template), "utf-8");
 

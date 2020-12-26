@@ -7,16 +7,22 @@ import { logger } from "../utils";
 // Types
 import { Handler } from "../types";
 
-type GenerateArgs = {
+interface GenerateArgs extends Record<string, any> {
   paths: string[];
   template: string;
-} & Record<string, string>;
+  confirm: boolean;
+  // Extra
+  p: string[];
+  t: string;
+  _: string[];
+  $0: string;
+}
 
 const generate: Handler<GenerateArgs> = async (args) => {
   try {
     const { config } = await readConfig();
 
-    let { paths, template, p, t, _, $0, ...vars } = args;
+    let { paths, template, confirm, p, t, _, $0, ...vars } = args;
 
     const [normalizedTemplate, templateWithoutExt] = await normalizeTemplate(
       template
@@ -33,6 +39,7 @@ const generate: Handler<GenerateArgs> = async (args) => {
         template: normalizedTemplate,
         templateWithoutExt,
         pathWithoutExt,
+        confirm,
         ...vars,
       });
     }
