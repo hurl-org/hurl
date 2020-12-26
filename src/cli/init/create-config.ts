@@ -2,16 +2,18 @@
 import { join } from "path";
 import { mkdir, writeFile } from "../utils";
 
+// Externals
+import { dump } from "js-yaml";
+
 // Internals
 import { logger } from "../utils";
 
 // Constants
-import { ALL_CONFIG_FILES } from "../constants";
-import { GATOR_PATH } from "../utils";
+import { ALL_CONFIG_FILES, GATOR_PATH } from "../constants";
 
 // Types
-import { ConfigFileContents, ConfigFileFormat } from "../types";
 import { InitConfig } from "./types";
+import { ConfigFileContents, ConfigFileFormat } from "../types";
 
 const createConfig = async (config: InitConfig) => {
   const { format, languages, ...rest } = config;
@@ -39,6 +41,7 @@ const CONFIG_FILE_CONTENTS: Record<ConfigFileFormat, ConfigCreator> = {
   JSON: (config) => JSON.stringify(config, null, 2),
   JavaScript: (config) => `module.exports = ${JSON.stringify(config, null, 2)}`,
   TypeScript: (config) => `export default ${JSON.stringify(config, null, 2)}`,
+  YAML: (config) => dump(config),
 };
 
 export default createConfig;

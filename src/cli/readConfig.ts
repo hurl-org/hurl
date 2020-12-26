@@ -6,8 +6,7 @@ import TypeScriptLoader from "@endemolshinegroup/cosmiconfig-typescript-loader";
 import { readdir } from "./utils";
 
 // Constants
-import { ALL_CONFIG_FILES } from "./constants";
-import { GATOR_PATH, TEMPLATES_PATH } from "./utils";
+import { ALL_CONFIG_FILES, GATOR_PATH, TEMPLATES_PATH } from "./constants";
 
 // Types
 import { ConfigFileContents } from "./types";

@@ -21,7 +21,3 @@ export const logger = {
   },
   line: (str: string) => console.log(`\n${str}`),
 };
-
-export const GATOR_PATH = join(".gator");
-
-export const TEMPLATES_PATH = join(GATOR_PATH, "templates");
