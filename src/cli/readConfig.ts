@@ -6,7 +6,12 @@ import TypeScriptLoader from "@endemolshinegroup/cosmiconfig-typescript-loader";
 import { readdir } from "./utils";
 
 // Constants
-import { ALL_CONFIG_FILES, GATOR_PATH, TEMPLATES_PATH } from "./constants";
+import {
+  ALL_CONFIG_FILES,
+  DEFAULT_CONFIG_FILE,
+  GATOR_PATH,
+  TEMPLATES_PATH,
+} from "./constants";
 
 // Types
 import { ConfigFileContents } from "./types";
@@ -35,10 +40,13 @@ const readConfig = async () => {
 
   if (config === null)
     throw new Error(
-      "Are you in the correct directory? No Gator config file found in the current directory, run 'gator init' to create a config file or create your own"
+      "Are you in the correct directory? No Gator config file or empty config file found in the current directory, run 'gator init' to create a config file or create your own"
     );
 
-  return config as { config: ConfigFileContents; filepath: string };
+  return { ...config, ...DEFAULT_CONFIG_FILE } as {
+    config: ConfigFileContents;
+    filepath: string;
+  };
 };
 
 export default readConfig;

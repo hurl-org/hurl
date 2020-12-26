@@ -2,6 +2,10 @@
 import { basename, join } from "path";
 import { logger, readFile, writeFile } from "../utils";
 
+// Externals
+import { prompt } from "enquirer";
+import { red } from "chalk";
+
 // Constants
 import { DEFAULT_VARIABLES, TEMPLATES_PATH } from "../constants";
 
@@ -29,6 +33,8 @@ const createFile = async (config: ConfigFileContents, args: CreateFileArgs) => {
 
   const newVars = { ...vars, ...defaults };
 
+  if (!(await checkExistingFile(path))) return;
+
   let content = await readFile(join(TEMPLATES_PATH, template), "utf-8");
 
   Object.entries(newVars).forEach(([key, value]) => {
@@ -42,6 +48,29 @@ const createFile = async (config: ConfigFileContents, args: CreateFileArgs) => {
   }
 
   await writeFile(path, content, "utf-8");
+
+  logger.success(
+    `Created ${path} from template ${template}!`,
+    `View: ./${path}`
+  );
+};
+
+const checkExistingFile = async (path: string) => {
+  try {
+    await readFile(path, "utf-8");
+    console.log(); // Empty line
+    const response = await prompt<{ proceed: boolean }>({
+      name: "proceed",
+      type: "confirm",
+      message: `The file ${path} already exists. Do you want to proceed and ${red(
+        "DELETE"
+      )} the existing file?`,
+    });
+
+    return response.proceed;
+  } catch (e) {
+    return true;
+  }
 };
 
 export default createFile;

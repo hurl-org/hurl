@@ -24,7 +24,7 @@ const generate: Handler<GenerateArgs> = async (args) => {
 
     const [normalizedPath, pathWithoutExt] = await normalizePath(
       path,
-      template
+      normalizedTemplate
     );
 
     await createFile(config, {
@@ -34,8 +34,6 @@ const generate: Handler<GenerateArgs> = async (args) => {
       pathWithoutExt,
       ...vars,
     });
-
-    logger.success(`Created ${path} file from template ${template}!`);
   } catch (e) {
     logger.error(e);
     process.exit(1);

@@ -1,9 +1,12 @@
 // Node
-import { readdir, rimrafPromise, logger } from "../utils";
+import { readdir, rimrafPromise } from "../utils";
 
 // Externals
 import { prompt } from "enquirer";
 import { red } from "chalk";
+
+// Internals
+import { logger } from "../utils";
 
 // Constants
 import { GATOR_PATH } from "../constants";

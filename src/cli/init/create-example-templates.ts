@@ -34,10 +34,7 @@ const createTemplate = async (language: Language, config: InitConfig) => {
 
   await writeFile(path, contents);
 
-  logger.success(
-    `Created ${language} example template!`,
-    ` View: ${process.cwd() + "/" + path}`
-  );
+  logger.success(`Created ${language} example template!`, `View: ${path}`);
 };
 
 const FILE_NAMES: Record<Language, string> = {

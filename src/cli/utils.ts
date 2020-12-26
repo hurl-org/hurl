@@ -12,15 +12,17 @@ export const rimrafPromise = promisify(rimraf);
 
 export const logger = {
   success: (str: string, extra = "") => {
-    const colored = green(str) + extra;
+    const colored = green(str) + " " + extra;
     logger.line(colored);
   },
   error: (err: Error) => {
-    console.log(red("Gator ERROR"));
+    logger.line(red("Gator ERROR"));
     console.error(err);
   },
   warn: (warning: string) => {
-    console.warn(yellow(warning));
+    logger.line(yellow(warning), console.warn);
   },
-  line: (str: string) => console.log(`\n${str}`),
+  line: (str: string, func = console.log) => {
+    func(`\n${str}`);
+  },
 };

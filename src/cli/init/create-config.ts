@@ -19,20 +19,14 @@ const createConfig = async (config: InitConfig) => {
   const { format, languages, ...rest } = config;
 
   await mkdir(GATOR_PATH);
-  logger.success(
-    "Created .gator directory!",
-    ` View: ${process.cwd() + "/" + GATOR_PATH}`
-  );
+  logger.success("Created .gator directory!", `View: ./${GATOR_PATH}`);
 
   const configFile = ALL_CONFIG_FILES[format];
   const configFilePath = join(GATOR_PATH, configFile);
 
   await writeFile(configFilePath, CONFIG_FILE_CONTENTS[format](rest));
 
-  logger.success(
-    `Created ${configFile} file!`,
-    ` View: ${process.cwd() + "/" + configFilePath}`
-  );
+  logger.success(`Created ${configFile} file!`, `View: ${configFilePath}`);
 };
 
 type ConfigCreator = (config: ConfigFileContents) => string;
