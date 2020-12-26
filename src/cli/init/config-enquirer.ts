@@ -31,7 +31,7 @@ const configEnquirer = async (args: InitArgs) => {
 
   if (examples) {
     questions.unshift({
-      name: "languages",
+      name: "examples",
       type: "multiselect",
       message: "What languages/frameworks do you want example templates for?",
       initial: 0,

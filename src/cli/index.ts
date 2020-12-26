@@ -32,11 +32,11 @@ yargs(process.argv.slice(2))
     "Generate a file from a template",
     (command) => {
       command
-        .option("path", {
-          description: "The path to the new file",
+        .option("paths", {
+          description: "The paths of the new files",
           alias: "p",
           demandOption: true,
-          string: true,
+          array: true,
         })
         .option("template", {
           description: "The name of the template file",

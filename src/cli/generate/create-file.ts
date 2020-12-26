@@ -10,11 +10,12 @@ import { red } from "chalk";
 import { DEFAULT_VARIABLES, TEMPLATES_PATH } from "../constants";
 
 // Types
-import { GenerateArgs } from "./generate";
 import { ConfigFileContents } from "../types";
 
-interface CreateFileArgs extends GenerateArgs {
+interface CreateFileArgs extends Record<string, string> {
+  template: string;
   templateWithoutExt: string;
+  path: string;
   pathWithoutExt: string;
 }
 

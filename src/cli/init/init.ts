@@ -18,10 +18,13 @@ import { Handler } from "../types";
 const init: Handler<InitArgs> = async (args) => {
   const { skip, examples } = args;
 
+  console.log(examples);
+
   try {
     await checkExistingConfig();
 
     let config: InitConfig = {
+      examples: [],
       format: "JSON",
       prefix: "__GATOR__",
     };
@@ -35,7 +38,6 @@ const init: Handler<InitArgs> = async (args) => {
     await mkdir(TEMPLATES_PATH);
 
     if (examples) {
-      config.examples = [];
       await createExampleTemplates(config);
     }
   } catch (e) {
