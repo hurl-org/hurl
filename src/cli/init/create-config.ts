@@ -5,6 +5,9 @@ import { mkdir, writeFile } from "../utils";
 // Internals
 import { logger } from "../utils";
 
+// Constants
+import { ALL_CONFIG_FILES } from "./constants";
+
 // Types
 import { Config } from "./types";
 
@@ -31,21 +34,25 @@ const createConfig = async (config: Config) => {
 type ConfigObject = Omit<Config, "format">;
 
 const createJsonConfig = async (config: ConfigObject) => {
+  const fileName = ALL_CONFIG_FILES.JSON;
+
   await writeFile(
-    join(".gator", ".gator.json"),
+    join(".gator", fileName),
     JSON.stringify(config, null, 2),
     "utf-8"
   );
-  logger.success("Created .gator.json file!", true);
+  logger.success(`Created ${fileName} file!`, true);
 };
 
 const createJavaScriptConfig = async (config: ConfigObject) => {
+  const fileName = ALL_CONFIG_FILES.JavaScript;
+
   await writeFile(
-    join(".gator", ".gator.js"),
+    join(".gator", fileName),
     `module.exports = ${JSON.stringify(config, null, 2)}`,
     "utf-8"
   );
-  logger.success("Created .gator.js file!", true);
+  logger.success(`Created ${fileName} file!`, true);
 };
 
 export default createConfig;

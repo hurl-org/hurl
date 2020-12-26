@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 import yargs from "yargs/yargs";
 
-// Internals
-import { readFile } from "./utils";
-
 // Commands
 import init from "./init";
 import generate from "./generate";

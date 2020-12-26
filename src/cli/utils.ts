@@ -1,7 +1,7 @@
 // Node
 import { promisify } from "util";
 import { promises } from "fs";
-export const { readdir, readFile, mkdir, writeFile } = promises;
+export const { readdir, mkdir, writeFile, readFile } = promises;
 
 // Externals
 import rimraf from "rimraf";
@@ -10,8 +10,8 @@ export const rimrafPromise = promisify(rimraf);
 import { green, red } from "chalk";
 
 export const logger = {
-  success: (str: string, line = false) => {
-    const colored = green(str);
+  success: (str: string, line = false, extra = "") => {
+    const colored = green(str) + extra;
     line ? logger.line(colored) : console.log(colored);
   },
   error: (err: Error) => {

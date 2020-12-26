@@ -4,11 +4,11 @@ export type Language =
   | "React (JavaScript)"
   | "React (TypeScript)";
 
-export type Format = "JSON" | "JavaScript";
+export type ConfigFileFormat = "JSON" | "JavaScript";
 
 export interface Config {
   languages: Language[];
-  format: Format;
+  format: ConfigFileFormat;
   prefix: string;
 }
 

@@ -1,17 +1,11 @@
 // Externals
 import { prompt } from "enquirer";
 
+// Constants
+import { ALL_FORMATS, ALL_LANGUAGES } from "./constants";
+
 // Types
-import { Config, Format, Language } from "./types";
-
-const ALL_LANGUAGES: Language[] = [
-  "JavaScript",
-  "TypeScript",
-  "React (JavaScript)",
-  "React (TypeScript)",
-];
-
-const ALL_FORMATS: Format[] = ["JSON", "JavaScript"];
+import { Config } from "./types";
 
 const configEnquirer = async () => {
   const config: Config = await prompt([
