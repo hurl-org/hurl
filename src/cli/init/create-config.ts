@@ -24,14 +24,14 @@ const createConfig = async (config: InitConfig) => {
     ` View: ${process.cwd() + "/" + GATOR_PATH}`
   );
 
-  const file = ALL_CONFIG_FILES[format];
-  const path = join(GATOR_PATH, file);
+  const configFile = ALL_CONFIG_FILES[format];
+  const configFilePath = join(GATOR_PATH, configFile);
 
-  await writeFile(path, CONFIG_FILE_CONTENTS[format](rest));
+  await writeFile(configFilePath, CONFIG_FILE_CONTENTS[format](rest));
 
   logger.success(
-    `Created ${file} file!`,
-    ` View: ${process.cwd() + "/" + path}`
+    `Created ${configFile} file!`,
+    ` View: ${process.cwd() + "/" + configFilePath}`
   );
 };
 

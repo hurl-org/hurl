@@ -9,129 +9,58 @@ import { logger } from "../utils";
 import { TEMPLATES_PATH } from "../constants";
 
 // Types
-import { InitConfig } from "./types";
+import { InitConfig, Language } from "./types";
 
 const createExampleTemplates = async (config: InitConfig) => {
   await mkdir(TEMPLATES_PATH);
-  config.languages.forEach((language) => {
-    switch (language) {
-      case "JavaScript": {
-        createJavaScriptExampleTemplate(config);
-        break;
-      }
-      case "TypeScript": {
-        createTypeScriptExampleTemplate(config);
-        break;
-      }
-      case "React (JavaScript)": {
-        createReactJavaScriptExampleTemplate(config);
-        break;
-      }
-      case "React (TypeScript)": {
-        createReactTypeScriptExampleTemplate(config);
-        break;
-      }
-      default: {
-        throw new Error(`Language type: ${language} not supported`);
-      }
-    }
-  });
+  config.languages.forEach((language) => createTemplate(language, config));
 };
 
-const createJavaScriptExampleTemplate = async (config: InitConfig) => {
-  const { prefix } = config;
-  const fileName = "javascript-example";
-  const file = `${fileName}.js`;
-
+const createTemplate = async (language: Language, config: InitConfig) => {
+  const file = FILE_NAMES[language];
   const path = join(TEMPLATES_PATH, file);
 
-  const exampleVar = "name";
+  const EXAMPLE_VARIABLE = "name";
 
-  await writeFile(
-    path,
-    "// JavaScript Example Template\n\n" +
-      `const example = 'Hello ${prefix}${exampleVar}!';\n\n` +
-      `// Run 'gator generate -p <path> -t ${fileName} --${exampleVar}=<${exampleVar}>' to create a new file based on this template`,
-    "utf-8"
-  );
+  const contents =
+    `// ${language} Example Template\n\n` +
+    FILE_CONTENTS[language](config, EXAMPLE_VARIABLE) +
+    `\n\n// Run 'gator generate -p <path> -t ${file} --${EXAMPLE_VARIABLE}=<${EXAMPLE_VARIABLE}>' to create a new file based on this template`;
+
+  await writeFile(path, contents);
+
   logger.success(
-    "Created JavaScript example template!",
+    `Created ${language} example template!`,
     ` View: ${process.cwd() + "/" + path}`
   );
 };
 
-const createTypeScriptExampleTemplate = async (config: InitConfig) => {
-  const { prefix } = config;
-  const fileName = "typescript-example";
-  const file = `${fileName}.ts`;
-
-  const path = join(TEMPLATES_PATH, file);
-
-  const exampleVar = "name";
-
-  await writeFile(
-    path,
-    "// TypeScript Example Template\n\n" +
-      `const typed: string = 'Goodbye ${prefix}${exampleVar}!';\n\n` +
-      `// Run 'gator generate -p <path> -t ${fileName} --${exampleVar}=<${exampleVar}>' to create a new file based on this template`,
-    "utf-8"
-  );
-  logger.success(
-    "Created TypeScript example template!",
-    ` View: ${process.cwd() + "/" + path}`
-  );
+const FILE_NAMES: Record<Language, string> = {
+  JavaScript: "javascript-example.js",
+  TypeScript: "typescript-example.ts",
+  "React (JavaScript)": "react-javascript-example.jsx",
+  "React (TypeScript)": "react-typescript-example.tsx",
 };
 
-const createReactJavaScriptExampleTemplate = async (config: InitConfig) => {
-  const { prefix } = config;
-  const fileName = "react-javascript-example";
-  const file = `${fileName}.jsx`;
+type FileContentsCreator = (config: InitConfig, exampleVar: string) => string;
 
-  const path = join(TEMPLATES_PATH, file);
-
-  const exampleVar = "name";
-
-  await writeFile(
-    path,
-    "// React JavaScript Example Template\n\n" +
-      "import React from 'react';\n\n" +
-      "// The file name is supplied automatically when generating a file from a template\n" +
-      `const ${prefix}FILE_NAME = () => {\n` +
-      `  return <h1>Hello ${prefix}${exampleVar}</h1>;\n` +
-      "};\n\n" +
-      `// Run 'gator generate -p <path> -t ${fileName} --${exampleVar}=<${exampleVar}>' to create a new file based on this template`,
-    "utf-8"
-  );
-  logger.success(
-    "Created React JavaScript example template!",
-    ` View: ${process.cwd() + "/" + path}`
-  );
-};
-
-const createReactTypeScriptExampleTemplate = async (config: InitConfig) => {
-  const { prefix } = config;
-  const fileName = "react-typescript-example";
-  const file = `${fileName}.tsx`;
-
-  const path = join(TEMPLATES_PATH, file);
-
-  const exampleVar = "name";
-
-  await writeFile(
-    path,
-    "// React TypeScript Example Template\n\n" +
-      "import React from 'react';\n\n" +
-      "// The file name is supplied automatically when generating a file from a template\n" +
-      `const ${prefix}FILE_NAME: React.FC = () => {\n` +
-      `  return <h1>Hello ${prefix}${exampleVar}</h1>;\n` +
-      "};\n\n" +
-      `// Run 'gator generate -p <path> -t ${fileName} --${exampleVar}=<${exampleVar}>' to create a new file based on this template`,
-    "utf-8"
-  );
-  logger.success(
-    "Created React TypeScript example template!",
-    ` View: ${process.cwd() + "/" + path}`
-  );
+const FILE_CONTENTS: Record<Language, FileContentsCreator> = {
+  JavaScript: ({ prefix }, exampleVar) =>
+    `const example = 'Hello ${prefix}${exampleVar}!';`,
+  TypeScript: ({ prefix }, exampleVar) =>
+    `const typed: string = 'Goodbye ${prefix}${exampleVar}!';`,
+  "React (JavaScript)": ({ prefix }, exampleVar) =>
+    "import React from 'react';\n\n" +
+    "// The file name is supplied automatically when generating a file from a template\n" +
+    `const ${prefix}FILE_NAME = () => {\n` +
+    `  return <h1>Hello ${prefix}${exampleVar}</h1>;\n` +
+    "};",
+  "React (TypeScript)": ({ prefix }, exampleVar) =>
+    "import React from 'react';\n\n" +
+    "// The file name is supplied automatically when generating a file from a template\n" +
+    `const ${prefix}FILE_NAME: React.FC = () => {\n` +
+    `  return <h1>Hello ${prefix}${exampleVar}</h1>;\n` +
+    "};",
 };
 
 export default createExampleTemplates;
