@@ -20,7 +20,7 @@ const checkExistingConfig = async () => {
 
     try {
       await rimrafPromise(".gator");
-      logger.success("Removed existing .gator directory!", true);
+      logger.success("Removed existing .gator directory!");
     } catch (e) {
       logger.error(e);
       process.exit(1);

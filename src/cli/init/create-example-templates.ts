@@ -53,7 +53,6 @@ const createJavaScriptExampleTemplate = async (config: Config) => {
   );
   logger.success(
     "Created JavaScript example template!",
-    true,
     ` View: ${process.cwd() + "/" + path}`
   );
 };
@@ -76,7 +75,6 @@ const createTypeScriptExampleTemplate = async (config: Config) => {
   );
   logger.success(
     "Created TypeScript example template!",
-    true,
     ` View: ${process.cwd() + "/" + path}`
   );
 };
@@ -103,7 +101,6 @@ const createReactJavaScriptExampleTemplate = async (config: Config) => {
   );
   logger.success(
     "Created React JavaScript example template!",
-    true,
     ` View: ${process.cwd() + "/" + path}`
   );
 };
@@ -130,7 +127,6 @@ const createReactTypeScriptExampleTemplate = async (config: Config) => {
   );
   logger.success(
     "Created React TypeScript example template!",
-    true,
     ` View: ${process.cwd() + "/" + path}`
   );
 };

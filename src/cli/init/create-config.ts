@@ -19,7 +19,6 @@ const createConfig = async (config: Config) => {
   await mkdir(dirPath);
   logger.success(
     "Created .gator directory!",
-    true,
     ` View at ${process.cwd() + "/" + dirPath}`
   );
   switch (format) {
@@ -47,7 +46,6 @@ const createJsonConfig = async (config: ConfigObject) => {
 
   logger.success(
     `Created ${file} file!`,
-    true,
     ` View at ${process.cwd() + "/" + path}`
   );
 };
@@ -60,7 +58,6 @@ const createJavaScriptConfig = async (config: ConfigObject) => {
 
   logger.success(
     `Created ${file} file!`,
-    true,
     ` View at ${process.cwd() + "/" + path}`
   );
 };
