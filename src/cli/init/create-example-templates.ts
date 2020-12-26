@@ -5,11 +5,14 @@ import { mkdir, writeFile } from "../utils";
 // Internals
 import { logger } from "../utils";
 
+// Constants
+import { TEMPLATES_PATH } from "../utils";
+
 // Types
 import { Config } from "./types";
 
 const createExampleTemplates = async (config: Config) => {
-  await mkdir(join(".gator", "templates"));
+  await mkdir(TEMPLATES_PATH);
   config.languages.forEach((language) => {
     switch (language) {
       case "JavaScript": {
@@ -40,7 +43,7 @@ const createJavaScriptExampleTemplate = async (config: Config) => {
   const fileName = "javascript-example";
   const file = `${fileName}.js`;
 
-  const path = join(".gator", "templates", file);
+  const path = join(TEMPLATES_PATH, file);
 
   const exampleVar = "name";
 
@@ -62,7 +65,7 @@ const createTypeScriptExampleTemplate = async (config: Config) => {
   const fileName = "typescript-example";
   const file = `${fileName}.ts`;
 
-  const path = join(".gator", "templates", file);
+  const path = join(TEMPLATES_PATH, file);
 
   const exampleVar = "name";
 
@@ -84,7 +87,7 @@ const createReactJavaScriptExampleTemplate = async (config: Config) => {
   const fileName = "react-javascript-example";
   const file = `${fileName}.jsx`;
 
-  const path = join(".gator", "templates", file);
+  const path = join(TEMPLATES_PATH, file);
 
   const exampleVar = "name";
 
@@ -110,7 +113,7 @@ const createReactTypeScriptExampleTemplate = async (config: Config) => {
   const fileName = "react-typescript-example";
   const file = `${fileName}.tsx`;
 
-  const path = join(".gator", "templates", file);
+  const path = join(TEMPLATES_PATH, file);
 
   const exampleVar = "name";
 

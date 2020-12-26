@@ -1,5 +1,6 @@
 // Node
 import { promisify } from "util";
+import { join } from "path";
 import { promises } from "fs";
 export const { readdir, mkdir, writeFile, readFile } = promises;
 
@@ -20,3 +21,7 @@ export const logger = {
   },
   line: (str: string) => console.log(`\n${str}`),
 };
+
+export const GATOR_PATH = join(".gator");
+
+export const TEMPLATES_PATH = join(GATOR_PATH, "templates");

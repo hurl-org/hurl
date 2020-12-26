@@ -1,11 +1,13 @@
 // Node
-import { dirname, extname, join } from "path";
+import { join } from "path";
 
 // Internals
-import { logger, readdir, mkdir, writeFile, readFile } from "../utils";
+import { logger, readdir, writeFile, readFile } from "../utils";
+import { normalizeTemplate, normalizePath } from "./normalize";
 
 // Constants
 import { ALL_CONFIG_FILES } from "../init/constants";
+import { GATOR_PATH, TEMPLATES_PATH } from "../utils";
 
 // Types
 import { Handler } from "../index";
@@ -35,35 +37,9 @@ const generate: Handler<GenerateArgs> = async (args) => {
   }
 };
 
-const normalizeTemplate = async (template: string) => {
-  const containsExt = !!extname(template).length;
-
-  const templates = await readdir(join(".gator", "templates"));
-
-  const newTemplate = templates.find((t) => {
-    if (!containsExt) t = t.replace(/\.[^/.]+$/, "");
-    return t === template;
-  });
-
-  if (newTemplate === undefined)
-    throw new Error(`The template '${template}' does not exist`);
-
-  return newTemplate;
-};
-
-const normalizePath = async (path: string, template: string) => {
-  const parentDir = dirname(path);
-
-  await mkdir(parentDir, { recursive: true });
-
-  if (!extname(path).length) path += extname(template);
-
-  return path;
-};
-
 const checkForGatorConfig = async () => {
   try {
-    await readdir(".gator");
+    await readdir(GATOR_PATH);
   } catch (e) {
     throw new Error(
       "No Gator directory found, run 'gator init' to configure Gator"
@@ -72,7 +48,7 @@ const checkForGatorConfig = async () => {
   try {
     await Promise.any(
       Object.values(ALL_CONFIG_FILES).map((file) =>
-        readFile(join(".gator", file))
+        readFile(join(GATOR_PATH, file))
       )
     );
   } catch (e) {
@@ -81,7 +57,7 @@ const checkForGatorConfig = async () => {
     );
   }
   try {
-    await readdir(join(".gator", "templates"));
+    await readdir(TEMPLATES_PATH);
   } catch (e) {
     throw new Error(
       "No Gator templates found, run 'gator init' to create default templates or create your own"

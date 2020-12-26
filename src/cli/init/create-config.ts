@@ -7,6 +7,7 @@ import { logger } from "../utils";
 
 // Constants
 import { ALL_CONFIG_FILES } from "./constants";
+import { GATOR_PATH } from "../utils";
 
 // Types
 import { Config } from "./types";
@@ -14,12 +15,10 @@ import { Config } from "./types";
 const createConfig = async (config: Config) => {
   const { format, ...rest } = config;
 
-  const dirPath = join(".gator");
-
-  await mkdir(dirPath);
+  await mkdir(GATOR_PATH);
   logger.success(
     "Created .gator directory!",
-    ` View at ${process.cwd() + "/" + dirPath}`
+    ` View at ${process.cwd() + "/" + GATOR_PATH}`
   );
   switch (format) {
     case "JSON": {
@@ -40,7 +39,7 @@ type ConfigObject = Omit<Config, "format">;
 
 const createJsonConfig = async (config: ConfigObject) => {
   const file = ALL_CONFIG_FILES.JSON;
-  const path = join(".gator", file);
+  const path = join(GATOR_PATH, file);
 
   await writeFile(path, JSON.stringify(config, null, 2));
 
@@ -52,7 +51,7 @@ const createJsonConfig = async (config: ConfigObject) => {
 
 const createJavaScriptConfig = async (config: ConfigObject) => {
   const file = ALL_CONFIG_FILES.JavaScript;
-  const path = join(".gator", file);
+  const path = join(GATOR_PATH, file);
 
   await writeFile(path, `module.exports = ${JSON.stringify(config, null, 2)}`);
 
