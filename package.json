@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gator-org/gator.git"
+    "url": "https://github.com/gator-org/gator.git"
   },
   "homepage": "https://github.com/gator-org/gator#readme",
   "author": "Yash Totale",

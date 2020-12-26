@@ -1,7 +1,7 @@
 // Internals
-import interpolate from "./interpolate";
-import { normalizeTemplate, normalizePath } from "./normalize";
 import readConfig from "../readConfig";
+import { normalizeTemplate, normalizePath } from "./normalize";
+import createFile from "./create-file";
 import { logger } from "../utils";
 
 // Types
@@ -14,15 +14,28 @@ export interface GenerateArgs extends Record<string, string> {
 
 const generate: Handler<GenerateArgs> = async (args) => {
   try {
-    const config = await readConfig();
+    const { config } = await readConfig();
 
     let { path, template, p, t, _, $0, ...vars } = args;
 
-    template = await normalizeTemplate(template);
+    const [normalizedTemplate, templateWithoutExt] = await normalizeTemplate(
+      template
+    );
 
-    path = await normalizePath(path, template);
+    const [normalizedPath, pathWithoutExt] = await normalizePath(
+      path,
+      template
+    );
 
-    await interpolate(config.config, { path, template, ...vars });
+    await createFile(config, {
+      path: normalizedPath,
+      template: normalizedTemplate,
+      templateWithoutExt,
+      pathWithoutExt,
+      ...vars,
+    });
+
+    logger.success(`Created ${path} file from template ${template}!`);
   } catch (e) {
     logger.error(e);
     process.exit(1);

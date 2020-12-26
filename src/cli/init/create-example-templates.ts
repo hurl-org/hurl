@@ -6,7 +6,7 @@ import { mkdir, writeFile } from "../utils";
 import { logger } from "../utils";
 
 // Constants
-import { TEMPLATES_PATH } from "../constants";
+import { DEFAULT_VARIABLES, TEMPLATES_PATH } from "../constants";
 
 // Types
 import { InitConfig, Language } from "./types";
@@ -25,7 +25,12 @@ const createTemplate = async (language: Language, config: InitConfig) => {
   const contents =
     `// ${language} Example Template\n\n` +
     FILE_CONTENTS[language](config, EXAMPLE_VARIABLE) +
-    `\n\n// Run 'gator generate -p <path> -t ${file} --${EXAMPLE_VARIABLE}=<${EXAMPLE_VARIABLE}>' to create a new file based on this template`;
+    `\n\n// Run 'gator generate -p <path> -t ${file} --${EXAMPLE_VARIABLE}=<${EXAMPLE_VARIABLE}>' to create a new file based on this template\n\n` +
+    "/** Here's a full list of default variables:\n" +
+    " *\n" +
+    DEFAULT_VARIABLES.map((d) => ` * ${d}`).join("\n") +
+    "\n *\n" +
+    " */";
 
   await writeFile(path, contents);
 
@@ -51,14 +56,12 @@ const FILE_CONTENTS: Record<Language, FileContentsCreator> = {
     `const typed: string = 'Goodbye ${prefix}${exampleVar}!';`,
   "React (JavaScript)": ({ prefix }, exampleVar) =>
     "import React from 'react';\n\n" +
-    "// The file name is supplied automatically when generating a file from a template\n" +
-    `const ${prefix}FILE_NAME = () => {\n` +
+    `const ${prefix}FILE_NAME_WITHOUT_EXTENSION = () => {\n` +
     `  return <h1>Hello ${prefix}${exampleVar}</h1>;\n` +
     "};",
   "React (TypeScript)": ({ prefix }, exampleVar) =>
     "import React from 'react';\n\n" +
-    "// The file name is supplied automatically when generating a file from a template\n" +
-    `const ${prefix}FILE_NAME: React.FC = () => {\n` +
+    `const ${prefix}FILE_NAME_WITHOUT_EXTENSION: React.FC = () => {\n` +
     `  return <h1>Hello ${prefix}${exampleVar}</h1>;\n` +
     "};",
 };

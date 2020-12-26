@@ -14,3 +14,12 @@ export const ALL_CONFIG_FILES: Record<ConfigFileFormat, string> = {
 export const GATOR_PATH = join(".gator");
 
 export const TEMPLATES_PATH = join(GATOR_PATH, "templates");
+
+export const DEFAULT_VARIABLES = [
+  "RELATIVE_FILE_PATH_WITHOUT_EXTENSION",
+  "RELATIVE_FILE_PATH",
+  "FILE_NAME_WITHOUT_EXTENSION",
+  "FILE_NAME",
+  "TEMPLATE_NAME_WITHOUT_EXTENSION",
+  "TEMPLATE_NAME",
+] as const;
