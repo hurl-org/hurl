@@ -8,6 +8,7 @@ import { ALL_FORMATS, ALL_LANGUAGES } from "./constants";
 import { Config } from "./types";
 
 const configEnquirer = async () => {
+  console.log(); // Empty Line
   const config: Config = await prompt([
     {
       name: "languages",

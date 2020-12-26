@@ -17,7 +17,7 @@ const init: Handler<InitArgs> = async ({ skip }) => {
     await checkExistingConfig();
 
     let config: Config = {
-      languages: ["JavaScript"],
+      languages: [],
       format: "JSON",
       prefix: "__GATOR__",
     };

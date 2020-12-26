@@ -14,8 +14,14 @@ import { Config } from "./types";
 const createConfig = async (config: Config) => {
   const { format, ...rest } = config;
 
-  await mkdir(join(".gator"));
-  logger.success("Created .gator directory!", true);
+  const dirPath = join(".gator");
+
+  await mkdir(dirPath);
+  logger.success(
+    "Created .gator directory!",
+    true,
+    ` View at ${process.cwd() + "/" + dirPath}`
+  );
   switch (format) {
     case "JSON": {
       createJsonConfig(rest);
@@ -34,25 +40,29 @@ const createConfig = async (config: Config) => {
 type ConfigObject = Omit<Config, "format">;
 
 const createJsonConfig = async (config: ConfigObject) => {
-  const fileName = ALL_CONFIG_FILES.JSON;
+  const file = ALL_CONFIG_FILES.JSON;
+  const path = join(".gator", file);
 
-  await writeFile(
-    join(".gator", fileName),
-    JSON.stringify(config, null, 2),
-    "utf-8"
+  await writeFile(path, JSON.stringify(config, null, 2));
+
+  logger.success(
+    `Created ${file} file!`,
+    true,
+    ` View at ${process.cwd() + "/" + path}`
   );
-  logger.success(`Created ${fileName} file!`, true);
 };
 
 const createJavaScriptConfig = async (config: ConfigObject) => {
-  const fileName = ALL_CONFIG_FILES.JavaScript;
+  const file = ALL_CONFIG_FILES.JavaScript;
+  const path = join(".gator", file);
 
-  await writeFile(
-    join(".gator", fileName),
-    `module.exports = ${JSON.stringify(config, null, 2)}`,
-    "utf-8"
+  await writeFile(path, `module.exports = ${JSON.stringify(config, null, 2)}`);
+
+  logger.success(
+    `Created ${file} file!`,
+    true,
+    ` View at ${process.cwd() + "/" + path}`
   );
-  logger.success(`Created ${fileName} file!`, true);
 };
 
 export default createConfig;

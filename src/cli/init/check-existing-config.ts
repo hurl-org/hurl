@@ -8,6 +8,7 @@ const checkExistingConfig = async () => {
   try {
     await readdir(".gator"); // Will throw error if it doesn't exist
 
+    console.log(); // Empty Line
     const response = await prompt<{ proceed: boolean }>({
       name: "proceed",
       type: "confirm",
