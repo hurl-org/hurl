@@ -2,14 +2,15 @@
 import { prompt } from "enquirer";
 
 // Constants
-import { ALL_FORMATS, ALL_LANGUAGES } from "./constants";
+import { ALL_LANGUAGES } from "./constants";
+import { ALL_CONFIG_FILES } from "../constants";
 
 // Types
-import { Config } from "./types";
+import { InitConfig } from "./types";
 
 const configEnquirer = async () => {
   console.log(); // Empty Line
-  const config: Config = await prompt([
+  const config: InitConfig = await prompt([
     {
       name: "languages",
       type: "multiselect",
@@ -30,7 +31,9 @@ const configEnquirer = async () => {
       type: "select",
       message: "What format do you want your config file to be in?",
       initial: 0,
-      choices: ALL_FORMATS.map((format) => ({ name: format })),
+      choices: Object.keys(ALL_CONFIG_FILES).map((format) => ({
+        name: format,
+      })),
     },
   ]);
 

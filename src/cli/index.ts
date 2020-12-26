@@ -45,5 +45,3 @@ yargs(process.argv.slice(2))
   .recommendCommands()
   .strict()
   .version("1.0.0").argv;
-
-export type Handler<T> = (args: T) => void | Promise<void>;

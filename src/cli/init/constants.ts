@@ -1,5 +1,5 @@
 // Types
-import { Language, ConfigFileFormat } from "./types";
+import { Language } from "./types";
 
 export const ALL_LANGUAGES: Language[] = [
   "JavaScript",
@@ -7,10 +7,3 @@ export const ALL_LANGUAGES: Language[] = [
   "React (JavaScript)",
   "React (TypeScript)",
 ];
-
-export const ALL_FORMATS: ConfigFileFormat[] = ["JSON", "JavaScript"];
-
-export const ALL_CONFIG_FILES: Record<ConfigFileFormat, string> = {
-  JSON: ".gator.json",
-  JavaScript: ".gator.js",
-};

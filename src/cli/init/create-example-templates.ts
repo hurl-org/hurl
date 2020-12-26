@@ -9,9 +9,9 @@ import { logger } from "../utils";
 import { TEMPLATES_PATH } from "../utils";
 
 // Types
-import { Config } from "./types";
+import { InitConfig } from "./types";
 
-const createExampleTemplates = async (config: Config) => {
+const createExampleTemplates = async (config: InitConfig) => {
   await mkdir(TEMPLATES_PATH);
   config.languages.forEach((language) => {
     switch (language) {
@@ -38,7 +38,7 @@ const createExampleTemplates = async (config: Config) => {
   });
 };
 
-const createJavaScriptExampleTemplate = async (config: Config) => {
+const createJavaScriptExampleTemplate = async (config: InitConfig) => {
   const { prefix } = config;
   const fileName = "javascript-example";
   const file = `${fileName}.js`;
@@ -60,7 +60,7 @@ const createJavaScriptExampleTemplate = async (config: Config) => {
   );
 };
 
-const createTypeScriptExampleTemplate = async (config: Config) => {
+const createTypeScriptExampleTemplate = async (config: InitConfig) => {
   const { prefix } = config;
   const fileName = "typescript-example";
   const file = `${fileName}.ts`;
@@ -82,7 +82,7 @@ const createTypeScriptExampleTemplate = async (config: Config) => {
   );
 };
 
-const createReactJavaScriptExampleTemplate = async (config: Config) => {
+const createReactJavaScriptExampleTemplate = async (config: InitConfig) => {
   const { prefix } = config;
   const fileName = "react-javascript-example";
   const file = `${fileName}.jsx`;
@@ -108,7 +108,7 @@ const createReactJavaScriptExampleTemplate = async (config: Config) => {
   );
 };
 
-const createReactTypeScriptExampleTemplate = async (config: Config) => {
+const createReactTypeScriptExampleTemplate = async (config: InitConfig) => {
   const { prefix } = config;
   const fileName = "react-typescript-example";
   const file = `${fileName}.tsx`;

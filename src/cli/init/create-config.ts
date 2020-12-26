@@ -6,42 +6,26 @@ import { mkdir, writeFile } from "../utils";
 import { logger } from "../utils";
 
 // Constants
-import { ALL_CONFIG_FILES } from "./constants";
+import { ALL_CONFIG_FILES } from "../constants";
 import { GATOR_PATH } from "../utils";
 
 // Types
-import { Config } from "./types";
+import { ConfigFileContents, ConfigFileFormat } from "../types";
+import { InitConfig } from "./types";
 
-const createConfig = async (config: Config) => {
-  const { format, ...rest } = config;
+const createConfig = async (config: InitConfig) => {
+  const { format, languages, ...rest } = config;
 
   await mkdir(GATOR_PATH);
   logger.success(
     "Created .gator directory!",
     ` View: ${process.cwd() + "/" + GATOR_PATH}`
   );
-  switch (format) {
-    case "JSON": {
-      createJsonConfig(rest);
-      break;
-    }
-    case "JavaScript": {
-      createJavaScriptConfig(rest);
-      break;
-    }
-    default: {
-      throw new Error("Can't write to unknown file type.");
-    }
-  }
-};
 
-type ConfigObject = Omit<Config, "format">;
-
-const createJsonConfig = async (config: ConfigObject) => {
-  const file = ALL_CONFIG_FILES.JSON;
+  const file = ALL_CONFIG_FILES[format];
   const path = join(GATOR_PATH, file);
 
-  await writeFile(path, JSON.stringify(config, null, 2));
+  await writeFile(path, CONFIG_FILE_CONTENTS[format](rest));
 
   logger.success(
     `Created ${file} file!`,
@@ -49,16 +33,12 @@ const createJsonConfig = async (config: ConfigObject) => {
   );
 };
 
-const createJavaScriptConfig = async (config: ConfigObject) => {
-  const file = ALL_CONFIG_FILES.JavaScript;
-  const path = join(GATOR_PATH, file);
+type ConfigCreator = (config: ConfigFileContents) => string;
 
-  await writeFile(path, `module.exports = ${JSON.stringify(config, null, 2)}`);
-
-  logger.success(
-    `Created ${file} file!`,
-    ` View: ${process.cwd() + "/" + path}`
-  );
+const CONFIG_FILE_CONTENTS: Record<ConfigFileFormat, ConfigCreator> = {
+  JSON: (config) => JSON.stringify(config, null, 2),
+  JavaScript: (config) => `module.exports = ${JSON.stringify(config, null, 2)}`,
+  TypeScript: (config) => `export default ${JSON.stringify(config, null, 2)}`,
 };
 
 export default createConfig;

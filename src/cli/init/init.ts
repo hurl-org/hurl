@@ -6,7 +6,8 @@ import createConfig from "./create-config";
 import createExampleTemplates from "./create-example-templates";
 
 // Types
-import { Handler, Config } from "./types";
+import { InitConfig } from "./types";
+import { Handler } from "../types";
 
 interface InitArgs {
   skip: boolean;
@@ -16,7 +17,7 @@ const init: Handler<InitArgs> = async ({ skip }) => {
   try {
     await checkExistingConfig();
 
-    let config: Config = {
+    let config: InitConfig = {
       languages: [],
       format: "JSON",
       prefix: "__GATOR__",

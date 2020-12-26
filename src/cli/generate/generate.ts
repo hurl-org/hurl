@@ -5,7 +5,7 @@ import readConfig from "../readConfig";
 import { logger } from "../utils";
 
 // Types
-import { Handler } from "../index";
+import { Handler } from "../types";
 
 export interface GenerateArgs extends Record<string, string> {
   path: string;

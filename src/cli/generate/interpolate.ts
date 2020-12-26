@@ -3,10 +3,10 @@ import { join } from "path";
 import { readFile, TEMPLATES_PATH, writeFile } from "../utils";
 
 // Types
-import { Config } from "../init/types";
 import { GenerateArgs } from "./generate";
+import { ConfigFileContents } from "../types";
 
-const interpolate = async (config: Config, args: GenerateArgs) => {
+const interpolate = async (config: ConfigFileContents, args: GenerateArgs) => {
   const { path, template, ...vars } = args;
   const { prefix } = config;
 
