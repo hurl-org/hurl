@@ -1,14 +1,19 @@
 // Types
 import { ConfigFileFormat } from "../types";
 
-export type Language =
+export interface InitArgs {
+  skip: boolean;
+  examples: boolean;
+}
+
+export type Example =
   | "JavaScript"
   | "TypeScript"
   | "React (JavaScript)"
   | "React (TypeScript)";
 
 export interface InitConfig {
-  languages: Language[];
   format: ConfigFileFormat;
   prefix: string;
+  examples?: Example[];
 }

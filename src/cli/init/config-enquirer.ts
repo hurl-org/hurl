@@ -2,24 +2,16 @@
 import { prompt } from "enquirer";
 
 // Constants
-import { ALL_LANGUAGES } from "./constants";
+import { ALL_EXAMPLES } from "./constants";
 import { ALL_CONFIG_FILES } from "../constants";
 
 // Types
-import { InitConfig } from "./types";
+import { InitArgs, InitConfig } from "./types";
 
-const configEnquirer = async () => {
-  console.log(); // Empty Line
-  const config: InitConfig = await prompt([
-    {
-      name: "languages",
-      type: "multiselect",
-      message: "What languages/frameworks do you want to create templates for?",
-      initial: 0,
-      hint:
-        "(Press <space> to select, <a> to toggle all, <i> to invert selection)",
-      choices: ALL_LANGUAGES.map((language) => ({ name: language })),
-    },
+const configEnquirer = async (args: InitArgs) => {
+  const { examples } = args;
+
+  const questions: Parameters<typeof prompt>[0] = [
     {
       name: "prefix",
       type: "input",
@@ -35,7 +27,22 @@ const configEnquirer = async () => {
         name: format,
       })),
     },
-  ]);
+  ];
+
+  if (examples) {
+    questions.unshift({
+      name: "languages",
+      type: "multiselect",
+      message: "What languages/frameworks do you want example templates for?",
+      initial: 0,
+      hint:
+        "(Press <space> to select, <a> to toggle all, <i> to invert selection)",
+      choices: ALL_EXAMPLES.map((language) => ({ name: language })),
+    });
+  }
+
+  console.log(); // Empty Line
+  const config: InitConfig = await prompt(questions);
 
   return config;
 };

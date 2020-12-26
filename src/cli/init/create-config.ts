@@ -1,6 +1,6 @@
 // Node
 import { join } from "path";
-import { mkdir, writeFile } from "../utils";
+import { writeFile } from "../utils";
 
 // Externals
 import { dump } from "js-yaml";
@@ -16,9 +16,8 @@ import { InitConfig } from "./types";
 import { ConfigFileContents, ConfigFileFormat } from "../types";
 
 const createConfig = async (config: InitConfig) => {
-  const { format, languages, ...rest } = config;
+  const { format, examples, ...rest } = config;
 
-  await mkdir(GATOR_PATH);
   logger.success("Created .gator directory!", `View: ./${GATOR_PATH}`);
 
   const configFile = ALL_CONFIG_FILES[format];

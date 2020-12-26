@@ -18,6 +18,12 @@ yargs(process.argv.slice(2))
         boolean: true,
         default: false,
       });
+      command.option("examples", {
+        description: "Include example templates when creating config",
+        alias: "e",
+        boolean: true,
+        default: true,
+      });
     },
     init
   )

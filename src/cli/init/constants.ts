@@ -1,7 +1,7 @@
 // Types
-import { Language } from "./types";
+import { Example } from "./types";
 
-export const ALL_LANGUAGES: Language[] = [
+export const ALL_EXAMPLES: Example[] = [
   "JavaScript",
   "TypeScript",
   "React (JavaScript)",
