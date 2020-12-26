@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+
+// Externals
 import yargs from "yargs/yargs";
 
-// Commands
+// Internals
 import init from "./init";
 import generate from "./generate";
 

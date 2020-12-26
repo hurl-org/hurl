@@ -1,3 +1,4 @@
+// Types
 import { ConfigFileFormat } from "../types";
 
 export type Language =

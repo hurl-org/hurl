@@ -6,7 +6,7 @@ import { mkdir, writeFile } from "../utils";
 import { logger } from "../utils";
 
 // Constants
-import { TEMPLATES_PATH } from "../utils";
+import { TEMPLATES_PATH } from "../constants";
 
 // Types
 import { InitConfig } from "./types";

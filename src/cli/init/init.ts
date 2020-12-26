@@ -1,9 +1,9 @@
 // Internals
-import { logger } from "../utils";
 import checkExistingConfig from "./check-existing-config";
 import configEnquirer from "./config-enquirer";
 import createConfig from "./create-config";
 import createExampleTemplates from "./create-example-templates";
+import { logger } from "../utils";
 
 // Types
 import { InitConfig } from "./types";

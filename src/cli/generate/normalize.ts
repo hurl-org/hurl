@@ -5,7 +5,7 @@ import { dirname, extname } from "path";
 import { readdir, mkdir } from "../utils";
 
 // Constants
-import { TEMPLATES_PATH } from "../utils";
+import { TEMPLATES_PATH } from "../constants";
 
 export const normalizeTemplate = async (template: string) => {
   const containsExt = !!extname(template).length;

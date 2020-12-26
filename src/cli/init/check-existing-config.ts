@@ -6,7 +6,7 @@ import { prompt } from "enquirer";
 import { red } from "chalk";
 
 // Constants
-import { GATOR_PATH } from "../utils";
+import { GATOR_PATH } from "../constants";
 
 const checkExistingConfig = async () => {
   try {

@@ -1,6 +1,9 @@
 // Node
 import { join } from "path";
-import { readFile, TEMPLATES_PATH, writeFile } from "../utils";
+import { readFile, writeFile } from "../utils";
+
+// Constants
+import { TEMPLATES_PATH } from "../constants";
 
 // Types
 import { GenerateArgs } from "./generate";
