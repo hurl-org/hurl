@@ -8,7 +8,7 @@
     "name": "Yash Totale"
   },
   "bin": {
-    "gator": "out/gator.js"
+    "gator": "dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -40,13 +40,14 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
+    "@types/js-yaml": "^3.12.5",
+    "@types/lodash.merge": "^4.6.6",
     "@types/rimraf": "^3.0.0",
     "@types/yargs": "^15.0.12",
-    "@types/lodash.merge": "^4.6.6",
-    "@types/js-yaml": "^3.12.5"
+    "@vercel/ncc": "^0.26.1"
   },
   "scripts": {
-    "build": "tsc -p .",
-    "watch": "tsc -w"
+    "build": "ncc build gator.ts -m",
+    "start": "ncc build gator.ts --watch"
   }
 }

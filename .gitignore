@@ -9,8 +9,8 @@ coverage/
 gator-test/
 
 # production
+dist/
 out/
-bundle.js
 
 # misc
 .DS_Store
