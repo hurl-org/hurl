@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Externals
 import yargs from "yargs/yargs";
 
@@ -10,18 +11,19 @@ yargs(process.argv.slice(2))
     ["init", "initialize"],
     "Initialize Gator",
     (command) => {
-      command.option("skip", {
-        description: "Skip questionnare and create default config",
-        alias: "s",
-        boolean: true,
-        default: false,
-      });
-      command.option("examples", {
-        description: "Include example templates when creating config",
-        alias: "e",
-        boolean: true,
-        default: true,
-      });
+      command
+        .option("skip", {
+          description: "Skip questionnare and create default config",
+          alias: "s",
+          boolean: true,
+          default: false,
+        })
+        .option("examples", {
+          description: "Include example templates when creating config",
+          alias: "e",
+          boolean: true,
+          default: true,
+        });
     },
     init
   )
@@ -55,4 +57,5 @@ yargs(process.argv.slice(2))
   .demandCommand(1, "")
   .recommendCommands()
   .strict()
+  .completion("completion", "Generate completion script")
   .version("1.0.0").argv;
