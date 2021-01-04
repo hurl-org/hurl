@@ -91,7 +91,7 @@ export const findConfig = async (
   if (result) return merge(config, result.config);
 
   logger.warn(
-    `No config file was found in '${templatePath}'. If you do not need a config file, consider converting this folder to a file.`
+    `No config file or an empty config file was found in '${templatePath}'. If you do not need a config file, consider converting this folder to a file.`
   );
 
   return config;

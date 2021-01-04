@@ -6,6 +6,7 @@ node_modules/
 # testing
 coverage/
 .gator
+gator-test/
 
 # production
 out/

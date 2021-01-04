@@ -25,9 +25,10 @@ const init: Handler<InitArgs> = async (args) => {
       examples: [],
       format: "JSON",
       prefix: "__GATOR__",
+      variables: {},
     };
 
-    if (!skip) config = await configEnquirer(args);
+    if (!skip) config = { ...config, ...(await configEnquirer(args)) };
 
     await mkdir(GATOR_PATH);
 

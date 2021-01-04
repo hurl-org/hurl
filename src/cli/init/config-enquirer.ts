@@ -6,7 +6,14 @@ import { ALL_EXAMPLES } from "./constants";
 import { ALL_CONFIG_FILES } from "../constants";
 
 // Types
-import { InitArgs, InitConfig } from "./types";
+import { Example, InitArgs } from "./types";
+import { ConfigFileFormat } from "../types";
+
+interface PromptResults {
+  prefix: string;
+  format: ConfigFileFormat;
+  examples?: Example[];
+}
 
 const configEnquirer = async (args: InitArgs) => {
   const { examples } = args;
@@ -42,7 +49,7 @@ const configEnquirer = async (args: InitArgs) => {
   }
 
   console.log(); // Empty Line
-  const config: InitConfig = await prompt(questions);
+  const config = await prompt<PromptResults>(questions);
 
   return config;
 };

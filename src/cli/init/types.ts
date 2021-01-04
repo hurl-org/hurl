@@ -1,5 +1,5 @@
 // Types
-import { ConfigFileFormat } from "../types";
+import { ConfigFileContents, ConfigFileFormat } from "../types";
 
 export interface InitArgs {
   skip: boolean;
@@ -12,8 +12,7 @@ export type Example =
   | "React (JavaScript)"
   | "React (TypeScript)";
 
-export interface InitConfig {
+export interface InitConfig extends ConfigFileContents {
   format: ConfigFileFormat;
-  prefix: string;
-  examples?: Example[];
+  examples: Example[];
 }

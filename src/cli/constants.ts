@@ -32,4 +32,5 @@ export const ALL_CONFIG_FILES = Object.entries(
 
 export const DEFAULT_CONFIG_FILE: ConfigFileContents = {
   prefix: "__GATOR__",
+  variables: {},
 };

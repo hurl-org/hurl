@@ -39,14 +39,10 @@ const createFile = async (config: ConfigFileContents, args: CreateFileArgs) => {
   if (confirm && !(await checkExistingFile(filePath))) return;
 
   let contents = Object.entries(newVars).reduce((contents, [key, value]) => {
-    return contents.replace(new RegExp(`${prefix}${key}`), value);
+    return contents.replace(new RegExp(`${prefix}${key}`, "g"), value);
   }, templateContents);
 
-  if (contents.indexOf(prefix) != -1) {
-    logger.warn(
-      `The prefix '${prefix}' is present in the generated file. Did you forget to supply a variable?`
-    );
-  }
+  contents = await checkVariables(contents, config);
 
   await writeFile(filePath, contents, "utf-8");
 
@@ -54,6 +50,33 @@ const createFile = async (config: ConfigFileContents, args: CreateFileArgs) => {
     `Created ${filePath} from template ${template.base}!`,
     `View: ./${filePath}`
   );
+};
+
+const checkVariables = async (contents: string, config: ConfigFileContents) => {
+  const { prefix, variables } = config;
+
+  Object.entries(variables).forEach(([name, options]) => {
+    const { default: defaultVal, required } = options;
+    if (typeof defaultVal === "string") {
+      contents = contents.replace(
+        new RegExp(`${prefix}${name}`, "g"),
+        defaultVal
+      );
+    }
+    if (required && contents.indexOf(`${prefix}${name}`) !== -1) {
+      throw new Error(
+        `The variable '${name}' is required. Add --${name}=<some value> to the end of the generate command`
+      );
+    }
+  });
+
+  if (contents.indexOf(prefix) !== -1) {
+    logger.warn(
+      `The prefix '${prefix}' is present in the generated file. Did you forget to supply a variable?`
+    );
+  }
+
+  return contents;
 };
 
 const checkExistingFile = async (path: string) => {
