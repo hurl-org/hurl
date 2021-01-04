@@ -3,3 +3,21 @@
 <p>
 
 <h2 align="center">Template File Generator</h2>
+
+### Table of Contents <!-- omit in toc -->
+
+- [CLI](#cli)
+  - [Installation](#installation)
+  - [Documentation](#documentation)
+
+### CLI
+
+#### Installation
+
+```shell
+npm install -g @gator/cli
+```
+
+#### Documentation
+
+Refer to the CLI documentation

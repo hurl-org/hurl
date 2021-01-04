@@ -13,7 +13,7 @@ yargs(process.argv.slice(2))
     (command) => {
       command
         .option("skip", {
-          description: "Skip questionnare and create default config",
+          description: "Skip prompts and create default config",
           alias: "s",
           boolean: true,
           default: false,
@@ -29,17 +29,17 @@ yargs(process.argv.slice(2))
   )
   .command(
     "generate",
-    "Generate a file from a template",
+    "Generate files from a template",
     (command) => {
       command
         .option("paths", {
-          description: "The paths of the new files",
+          description: "The paths to the new files",
           alias: "p",
           demandOption: true,
           array: true,
         })
         .option("template", {
-          description: "The name of the template file",
+          description: "The name of the template file/folder",
           alias: "t",
           demandOption: true,
           string: true,
