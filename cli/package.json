@@ -47,7 +47,7 @@
     "@vercel/ncc": "^0.26.1"
   },
   "scripts": {
-    "build": "ncc build gator.ts -m",
-    "start": "ncc build gator.ts --watch"
+    "build": "ncc build src/gator.ts -m",
+    "start": "ncc build src/gator.ts --watch"
   }
 }
