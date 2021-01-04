@@ -7,7 +7,7 @@ import TypeScriptLoader from "@endemolshinegroup/cosmiconfig-typescript-loader";
 import merge from "lodash.merge";
 
 // Internals
-import { readdir, mkdir, readFile } from "../utils";
+import { readdir, mkdir, readFile, logger } from "../utils";
 
 // Constants
 import { ALL_CONFIG_FILE_EXTENSIONS, TEMPLATES_PATH } from "../constants";
@@ -19,6 +19,32 @@ export const normalizeTemplate = async (
   template: string,
   config: ConfigFileContents
 ): Promise<[ParsedPath, string, ConfigFileContents]> => {
+  const templatePath = await findTemplate(template);
+
+  const parsedTemplatePath = parse(templatePath);
+
+  try {
+    const templateContents = await readFile(templatePath, "utf-8");
+    return [parsedTemplatePath, templateContents, config];
+  } catch (e) {
+    const templateFilePath = await findTemplateFile(templatePath);
+    const templateContents = await readFile(templateFilePath, "utf-8");
+    const newConfig = await findConfig(config, templatePath);
+
+    return [
+      parse(
+        join(
+          TEMPLATES_PATH,
+          parsedTemplatePath.name + parse(templateFilePath).ext
+        )
+      ),
+      templateContents,
+      newConfig,
+    ];
+  }
+};
+
+export const findTemplate = async (template: string) => {
   const templates = await readdir(TEMPLATES_PATH);
 
   const { name: templateName, ext: templateExt } = parse(template);
@@ -32,45 +58,43 @@ export const normalizeTemplate = async (
   if (templateBase === undefined)
     throw new Error(`The template '${template}' does not exist`);
 
-  const templatePath = join(TEMPLATES_PATH, templateBase);
-  const parsedTemplatePath = parse(templatePath);
+  return join(TEMPLATES_PATH, templateBase);
+};
 
-  try {
-    const templateContents = await readFile(templatePath, "utf-8");
-    return [parsedTemplatePath, templateContents, config];
-  } catch (e) {
-    const files = await readdir(templatePath, "utf-8");
-    const templateFile = files.find((file) => parse(file).name === "template");
-    if (templateFile === undefined)
-      throw new Error(
-        `No template file found in ${templatePath}. Template files must be named 'template.<extension>'`
-      );
-    const templateFilePath = join(templatePath, templateFile);
-    const templateContents = await readFile(templateFilePath, "utf-8");
-    const explorer = cosmiconfig("config", {
-      searchPlaces: Object.values(ALL_CONFIG_FILE_EXTENSIONS).map(
-        (ext) => `config${ext}`
-      ),
-      loaders: { ".ts": TypeScriptLoader },
-      stopDir: TEMPLATES_PATH,
-    });
+export const findTemplateFile = async (templatePath: string) => {
+  const files = await readdir(templatePath, "utf-8");
 
-    const result = await explorer.search(templatePath);
+  const templateFile = files.find((file) => parse(file).name === "template");
 
-    let newConfig = { ...config };
-    if (result) merge(newConfig, result.config);
+  if (templateFile === undefined)
+    throw new Error(
+      `No template file found in ${templatePath}. Template files must be named 'template.<extension>'`
+    );
 
-    return [
-      parse(
-        join(
-          TEMPLATES_PATH,
-          parsedTemplatePath.name + parse(templateFilePath).ext
-        )
-      ),
-      templateContents,
-      newConfig,
-    ];
-  }
+  return join(templatePath, templateFile);
+};
+
+export const findConfig = async (
+  config: ConfigFileContents,
+  templatePath: string
+) => {
+  const explorer = cosmiconfig("config", {
+    searchPlaces: Object.values(ALL_CONFIG_FILE_EXTENSIONS).map(
+      (ext) => `config${ext}`
+    ),
+    loaders: { ".ts": TypeScriptLoader },
+    stopDir: TEMPLATES_PATH,
+  });
+
+  const result = await explorer.search(templatePath);
+
+  if (result) return merge(config, result.config);
+
+  logger.warn(
+    `No config file was found in '${templatePath}'. If you do not need a config file, consider converting this folder to a file.`
+  );
+
+  return config;
 };
 
 export const normalizePath = async (
