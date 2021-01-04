@@ -36,14 +36,20 @@ const readConfig = async () => {
     loaders: { noExt: defaultLoaders[".json"], ".ts": TypeScriptLoader },
     stopDir: process.cwd(),
   });
-  const config = await explorer.search(GATOR_PATH);
+  const result = await explorer.search(GATOR_PATH);
 
-  if (config === null)
+  if (result === null)
     throw new Error(
       "Are you in the correct directory? No Gator config file or empty config file found in the current directory, run 'gator init' to create a config file or create your own"
     );
 
-  return { ...config, ...DEFAULT_CONFIG_FILE } as {
+  return {
+    ...result,
+    config: {
+      ...DEFAULT_CONFIG_FILE,
+      ...result.config,
+    },
+  } as {
     config: ConfigFileContents;
     filepath: string;
   };

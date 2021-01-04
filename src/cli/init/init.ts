@@ -18,8 +18,6 @@ import { Handler } from "../types";
 const init: Handler<InitArgs> = async (args) => {
   const { skip, examples } = args;
 
-  console.log(examples);
-
   try {
     await checkExistingConfig();
 
