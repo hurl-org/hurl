@@ -24,14 +24,16 @@ const generate: Handler<GenerateArgs> = async (args) => {
 
     let { paths, template, confirm, p, t, _, $0, ...vars } = args;
 
-    const [parsedTemplate, templateContents] = await normalizeTemplate(
-      template
-    );
+    const [
+      parsedTemplate,
+      templateContents,
+      newConfig,
+    ] = await normalizeTemplate(template, config);
 
     for (const path of paths) {
       const parsedPath = await normalizePath(path, parsedTemplate);
 
-      await createFile(config, {
+      await createFile(newConfig, {
         path: parsedPath,
         template: parsedTemplate,
         templateContents,

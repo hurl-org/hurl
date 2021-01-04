@@ -13,7 +13,7 @@ import { DEFAULT_VARIABLES } from "../constants";
 import { ConfigFileContents } from "../types";
 
 interface CreateFileArgs extends Record<string, any> {
-  template: ParsedPath;
+  template: Pick<ParsedPath, "name" | "base">;
   templateContents: string;
   path: ParsedPath;
   confirm: boolean;

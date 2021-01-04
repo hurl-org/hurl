@@ -1,5 +1,5 @@
 // Externals
-import { cosmiconfig, defaultLoaders } from "cosmiconfig";
+import { cosmiconfig } from "cosmiconfig";
 import TypeScriptLoader from "@endemolshinegroup/cosmiconfig-typescript-loader";
 
 // Internals
@@ -33,7 +33,7 @@ const readConfig = async () => {
   }
   const explorer = cosmiconfig("gator", {
     searchPlaces: Object.values(ALL_CONFIG_FILES),
-    loaders: { noExt: defaultLoaders[".json"], ".ts": TypeScriptLoader },
+    loaders: { ".ts": TypeScriptLoader },
     stopDir: process.cwd(),
   });
   const result = await explorer.search(GATOR_PATH);

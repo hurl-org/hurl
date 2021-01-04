@@ -17,12 +17,18 @@ export const DEFAULT_VARIABLES = [
   "TEMPLATE_NAME",
 ] as const;
 
-export const ALL_CONFIG_FILES: Record<ConfigFileFormat, string> = {
-  JSON: ".gator.json",
-  JavaScript: ".gator.js",
-  TypeScript: ".gator.ts",
-  YAML: ".gator.yml",
+export const ALL_CONFIG_FILE_EXTENSIONS: Record<ConfigFileFormat, string> = {
+  JSON: ".json",
+  JavaScript: ".js",
+  TypeScript: ".ts",
+  YAML: ".yml",
 };
+
+export const ALL_CONFIG_FILES = Object.entries(
+  ALL_CONFIG_FILE_EXTENSIONS
+).reduce((prev, [key, value]) => {
+  return { ...prev, [key]: `.gator${value}` };
+}, {} as typeof ALL_CONFIG_FILE_EXTENSIONS);
 
 export const DEFAULT_CONFIG_FILE: ConfigFileContents = {
   prefix: "__GATOR__",
