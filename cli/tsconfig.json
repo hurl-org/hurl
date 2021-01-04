@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDir": ".",
     "outDir": "out",
     "module": "CommonJS",
     "target": "ES5",
@@ -20,5 +20,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "include": ["src"]
+  "include": ["./"]
 }

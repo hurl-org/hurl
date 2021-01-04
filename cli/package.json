@@ -1,0 +1,52 @@
+{
+  "name": "@gator/cli",
+  "version": "1.0.0",
+  "description": "Create template-generated files with ease from the Command Line",
+  "license": "MIT",
+  "homepage": "https://github.com/gator-org/gator#readme",
+  "author": {
+    "name": "Yash Totale"
+  },
+  "bin": {
+    "gator": "out/gator.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gator-org/gator.git"
+  },
+  "keywords": [
+    "template",
+    "templates",
+    "generate",
+    "scaffolding",
+    "bootstrap",
+    "boilerplate",
+    "skeleton",
+    "gator",
+    "cli",
+    "command-line"
+  ],
+  "bugs": {
+    "url": "https://github.com/gator-org/gators/issues"
+  },
+  "dependencies": {
+    "@endemolshinegroup/cosmiconfig-typescript-loader": "^3.0.2",
+    "chalk": "^4.1.0",
+    "cosmiconfig": "^7.0.0",
+    "enquirer": "^2.3.6",
+    "js-yaml": "^3.14.1",
+    "lodash.merge": "^4.6.2",
+    "rimraf": "^3.0.2",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "@types/rimraf": "^3.0.0",
+    "@types/yargs": "^15.0.12",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/js-yaml": "^3.12.5"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "watch": "tsc -w"
+  }
+}
