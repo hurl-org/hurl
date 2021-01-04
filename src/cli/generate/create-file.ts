@@ -1,5 +1,5 @@
 // Node
-import { basename, join } from "path";
+import { join, ParsedPath } from "path";
 import { logger, readFile, writeFile } from "../utils";
 
 // Externals
@@ -7,60 +7,52 @@ import { prompt } from "enquirer";
 import { red } from "chalk";
 
 // Constants
-import { DEFAULT_VARIABLES, TEMPLATES_PATH } from "../constants";
+import { DEFAULT_VARIABLES } from "../constants";
 
 // Types
 import { ConfigFileContents } from "../types";
 
 interface CreateFileArgs extends Record<string, any> {
-  template: string;
-  templateWithoutExt: string;
-  path: string;
-  pathWithoutExt: string;
+  template: ParsedPath;
+  templateContents: string;
+  path: ParsedPath;
   confirm: boolean;
 }
 
 const createFile = async (config: ConfigFileContents, args: CreateFileArgs) => {
-  const {
-    template,
-    templateWithoutExt,
-    path,
-    pathWithoutExt,
-    confirm,
-    ...vars
-  } = args;
+  const { template, templateContents, path, confirm, ...vars } = args;
   const { prefix } = config;
 
+  const filePath = join(path.dir, path.base);
+
   const defaults: Record<typeof DEFAULT_VARIABLES[number], string> = {
-    RELATIVE_FILE_PATH_WITHOUT_EXTENSION: pathWithoutExt,
-    RELATIVE_FILE_PATH: path,
-    FILE_NAME_WITHOUT_EXTENSION: basename(pathWithoutExt),
-    FILE_NAME: basename(path),
-    TEMPLATE_NAME_WITHOUT_EXTENSION: templateWithoutExt,
-    TEMPLATE_NAME: template,
+    RELATIVE_FILE_PATH_WITHOUT_EXTENSION: join(path.dir, path.name),
+    RELATIVE_FILE_PATH: filePath,
+    FILE_NAME_WITHOUT_EXTENSION: path.name,
+    FILE_NAME: path.base,
+    TEMPLATE_NAME_WITHOUT_EXTENSION: template.name,
+    TEMPLATE_NAME: template.base,
   };
 
   const newVars = { ...vars, ...defaults };
 
-  if (confirm && !(await checkExistingFile(path))) return;
+  if (confirm && !(await checkExistingFile(filePath))) return;
 
-  let content = await readFile(join(TEMPLATES_PATH, template), "utf-8");
+  let contents = Object.entries(newVars).reduce((contents, [key, value]) => {
+    return contents.replace(new RegExp(`${prefix}${key}`), value);
+  }, templateContents);
 
-  Object.entries(newVars).forEach(([key, value]) => {
-    content = content.replace(new RegExp(`${prefix}${key}`), value);
-  });
-
-  if (content.indexOf(prefix) != -1) {
+  if (contents.indexOf(prefix) != -1) {
     logger.warn(
       `The prefix '${prefix}' is present in the generated file. Did you forget to supply a variable?`
     );
   }
 
-  await writeFile(path, content, "utf-8");
+  await writeFile(filePath, contents, "utf-8");
 
   logger.success(
-    `Created ${path} from template ${template}!`,
-    `View: ./${path}`
+    `Created ${filePath} from template ${template.base}!`,
+    `View: ./${filePath}`
   );
 };
 
