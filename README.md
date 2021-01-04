@@ -20,4 +20,4 @@ npm install -g @gator/cli
 
 #### Documentation
 
-Refer to the CLI documentation
+Refer to the [CLI documentation](https://github.com/gator-org/gator/tree/main/cli#readme)
