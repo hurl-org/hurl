@@ -22,6 +22,7 @@
     "build": "lerna run build",
     "install": "lerna exec -- npm ci",
     "version": "lerna version",
+    "gh-package-set-up": "ts-node scripts/gh-package-set-up.ts",
     "publish": "lerna publish from-package"
   }
 }
