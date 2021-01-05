@@ -18,7 +18,9 @@
     "typescript": "^4.1.3"
   },
   "scripts": {
-    "test": "jest",
+    "test": "lerna run test",
+    "build": "lerna run build",
+    "version": "lerna version",
     "version:patch": "lerna version patch",
     "version:minor": "lerna version minor",
     "version:major": "lerna version major",
