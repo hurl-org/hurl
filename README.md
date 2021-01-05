@@ -1,8 +1,6 @@
-<p align="center">
-<img src="https://raw.githubusercontent.com/hurl-org/hurl/main/static/banner-light.png" width="800">
-<p>
+<p align="center"><img src="https://raw.githubusercontent.com/hurl-org/hurl/main/static/logo-light.png"><p>
 
-<h2 align="center">Template File Generator</h2>
+<h2 align="center">Hurl: <small>Template File Generator</small></h2>
 
 ### Table of Contents <!-- omit in toc -->
 
