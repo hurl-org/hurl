@@ -51,7 +51,7 @@ export const findTemplate = async (template: string) => {
 
   const templateBase = templates.find((t) => {
     const { name: tName, base: tBase } = parse(t);
-    if (!templateExt.length) return tName === templateName;
+    if (!templateExt) return tName === templateName;
     return tBase === templateName + templateExt;
   });
 
@@ -103,9 +103,9 @@ export const normalizePath = async (
 ): Promise<ParsedPath> => {
   let parsedPath = parse(path);
 
-  await mkdir(parsedPath.dir, { recursive: true });
+  if (parsedPath.dir) await mkdir(parsedPath.dir, { recursive: true });
 
-  if (!parsedPath.ext.length) parsedPath = parse(path + template.ext);
+  if (!parsedPath.ext) parsedPath = parse(path + template.ext);
 
   return parsedPath;
 };
