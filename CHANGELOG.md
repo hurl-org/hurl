@@ -7,9 +7,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 **Table of Contents**
 
 - [Unreleased](#unreleased)
+- [[1.0.1] - (2020-01-04)](#101---2020-01-04)
+  - [Fixed](#fixed)
 - [[1.0.0] - (2021-01-04)](#100---2021-01-04)
 
 ## Unreleased
+
+---
+
+## [1.0.1] - (2020-01-04)
+
+### Fixed
+
+- mkdir error when generating file in working directory
 
 ---
 
