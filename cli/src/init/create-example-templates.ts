@@ -24,7 +24,7 @@ const createTemplate = async (example: Example, config: InitConfig) => {
   const contents =
     `// ${example} Example Template\n\n` +
     FILE_CONTENTS[example](config, EXAMPLE_VARIABLE) +
-    `\n\n// Run 'gator generate -p <path> -t ${file} --${EXAMPLE_VARIABLE}=<${EXAMPLE_VARIABLE}>' to create a new file based on this template\n\n` +
+    `\n\n// Run 'hurl generate -p <path> -t ${file} --${EXAMPLE_VARIABLE}=<${EXAMPLE_VARIABLE}>' to create a new file based on this template\n\n` +
     "/** Here's a full list of default variables:\n" +
     " *\n" +
     DEFAULT_VARIABLES.map((d) => ` * ${d}`).join("\n") +

@@ -9,7 +9,7 @@ import createExampleTemplates from "./create-example-templates";
 import { logger } from "../utils";
 
 // Constants
-import { GATOR_PATH, TEMPLATES_PATH } from "../constants";
+import { HURL_PATH, TEMPLATES_PATH } from "../constants";
 
 // Types
 import { InitArgs, InitConfig } from "./types";
@@ -24,13 +24,13 @@ const init: Handler<InitArgs> = async (args) => {
     let config: InitConfig = {
       examples: [],
       format: "JSON",
-      prefix: "__GATOR__",
+      prefix: "__HURL__",
       variables: {},
     };
 
     if (!skip) config = { ...config, ...(await configEnquirer(args)) };
 
-    await mkdir(GATOR_PATH);
+    await mkdir(HURL_PATH);
 
     await createConfig(config);
 

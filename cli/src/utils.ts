@@ -16,7 +16,7 @@ export const logger = {
     logger.line(colored);
   },
   error: (err: Error) => {
-    logger.line(red("Gator ERROR"));
+    logger.line(red("Hurl ERROR"));
     console.error(err);
   },
   warn: (warning: string) => {

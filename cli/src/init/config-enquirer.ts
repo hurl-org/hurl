@@ -23,7 +23,7 @@ const configEnquirer = async (args: InitArgs) => {
       name: "prefix",
       type: "input",
       message: "What should be the prefix for dynamic template variables?",
-      initial: "__GATOR__",
+      initial: "__HURL__",
     },
     {
       name: "format",

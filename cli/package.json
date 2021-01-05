@@ -1,19 +1,19 @@
 {
-  "name": "@gator/cli",
+  "name": "@hurl/cli",
   "version": "1.0.0",
   "description": "Create template-generated files with ease from the Command Line",
   "license": "MIT",
-  "homepage": "https://github.com/gator-org/gator#readme",
+  "homepage": "https://github.com/hurl-org/hurl#readme",
   "author": {
     "name": "Yash Totale"
   },
   "bin": {
-    "gator": "dist/index.js"
+    "hurl": "dist/index.js"
   },
   "files": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/gator-org/gator.git"
+    "url": "https://github.com/hurl-org/hurl.git"
   },
   "keywords": [
     "template",
@@ -23,12 +23,14 @@
     "bootstrap",
     "boilerplate",
     "skeleton",
-    "gator",
+    "hurl",
     "cli",
-    "command-line"
+    "command-line",
+    "javascript",
+    "typescript"
   ],
   "bugs": {
-    "url": "https://github.com/gator-org/gators/issues"
+    "url": "https://github.com/hurl-org/hurl/issues"
   },
   "dependencies": {
     "@endemolshinegroup/cosmiconfig-typescript-loader": "^3.0.2",
@@ -52,8 +54,8 @@
     "postpack": "scripts/postpack.sh",
     "prepublishOnly": "npm run build",
     "preversion": "npm test",
-    "build": "ncc build src/gator.ts -m",
-    "start": "ncc build src/gator.ts --watch",
+    "build": "ncc build src/hurl.ts -m",
+    "start": "ncc build src/hurl.ts --watch",
     "test": "jest --passWithNoTests"
   }
 }

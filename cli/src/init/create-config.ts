@@ -9,7 +9,7 @@ import { dump } from "js-yaml";
 import { logger } from "../utils";
 
 // Constants
-import { ALL_CONFIG_FILES, GATOR_PATH } from "../constants";
+import { ALL_CONFIG_FILES, HURL_PATH } from "../constants";
 
 // Types
 import { InitConfig } from "./types";
@@ -18,10 +18,10 @@ import { ConfigFileContents, ConfigFileFormat } from "../types";
 const createConfig = async (config: InitConfig) => {
   const { format, examples, ...rest } = config;
 
-  logger.success("Created .gator directory!", `View: ./${GATOR_PATH}`);
+  logger.success("Created .hurl directory!", `View: ./${HURL_PATH}`);
 
   const configFile = ALL_CONFIG_FILES[format];
-  const configFilePath = join(GATOR_PATH, configFile);
+  const configFilePath = join(HURL_PATH, configFile);
 
   await writeFile(configFilePath, CONFIG_FILE_CONTENTS[format](rest));
 

@@ -9,7 +9,7 @@ import generate from "./generate";
 yargs(process.argv.slice(2))
   .command(
     ["init", "initialize"],
-    "Initialize Gator",
+    "Initialize Hurl",
     (command) => {
       command
         .option("skip", {

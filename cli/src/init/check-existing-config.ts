@@ -9,18 +9,18 @@ import { red } from "chalk";
 import { logger } from "../utils";
 
 // Constants
-import { GATOR_PATH } from "../constants";
+import { HURL_PATH } from "../constants";
 
 const checkExistingConfig = async () => {
   try {
-    await readdir(GATOR_PATH); // Will throw error if it doesn't exist
+    await readdir(HURL_PATH); // Will throw error if it doesn't exist
 
     console.log(); // Empty Line
     await confirmDelete();
 
     try {
-      await rimrafPromise(GATOR_PATH);
-      logger.success("Removed existing .gator directory!");
+      await rimrafPromise(HURL_PATH);
+      logger.success("Removed existing .hurl directory!");
     } catch (e) {
       logger.error(e);
       process.exit(1);
@@ -32,7 +32,7 @@ export const confirmDelete = async () => {
   const response = await prompt<{ proceed: boolean }>({
     name: "proceed",
     type: "confirm",
-    message: `A .gator directory already exists. Do you want to proceed and ${red(
+    message: `A .hurl directory already exists. Do you want to proceed and ${red(
       "DELETE"
     )} the existing config?`,
   });

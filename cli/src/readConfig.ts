@@ -9,7 +9,7 @@ import { readdir } from "./utils";
 import {
   ALL_CONFIG_FILES,
   DEFAULT_CONFIG_FILE,
-  GATOR_PATH,
+  HURL_PATH,
   TEMPLATES_PATH,
 } from "./constants";
 
@@ -18,29 +18,29 @@ import { ConfigFileContents } from "./types";
 
 const readConfig = async () => {
   try {
-    await readdir(GATOR_PATH);
+    await readdir(HURL_PATH);
   } catch (e) {
     throw new Error(
-      "Are you in the correct directory? No Gator directory found in the current directory, run 'gator init' to configure Gator"
+      "Are you in the correct directory? No Hurl directory found in the current directory, run 'hurl init' to configure Hurl"
     );
   }
   try {
     await readdir(TEMPLATES_PATH);
   } catch (e) {
     throw new Error(
-      "Are you in the correct directory? No Gator templates found in the current directory, run 'gator init' to create default templates or create your own"
+      "Are you in the correct directory? No Hurl templates found in the current directory, run 'hurl init' to create default templates or create your own"
     );
   }
-  const explorer = cosmiconfig("gator", {
+  const explorer = cosmiconfig("hurl", {
     searchPlaces: Object.values(ALL_CONFIG_FILES),
     loaders: { ".ts": TypeScriptLoader },
     stopDir: process.cwd(),
   });
-  const result = await explorer.search(GATOR_PATH);
+  const result = await explorer.search(HURL_PATH);
 
   if (result === null)
     throw new Error(
-      "Are you in the correct directory? No Gator config file or empty config file found in the current directory, run 'gator init' to create a config file or create your own"
+      "Are you in the correct directory? No Hurl config file or empty config file found in the current directory, run 'hurl init' to create a config file or create your own"
     );
 
   return {

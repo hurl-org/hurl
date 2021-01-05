@@ -4,9 +4,9 @@ import { join } from "path";
 // Types
 import { ConfigFileContents, ConfigFileFormat } from "./types";
 
-export const GATOR_PATH = join(".gator");
+export const HURL_PATH = join(".hurl");
 
-export const TEMPLATES_PATH = join(GATOR_PATH, "templates");
+export const TEMPLATES_PATH = join(HURL_PATH, "templates");
 
 export const DEFAULT_VARIABLES = [
   "RELATIVE_FILE_PATH_WITHOUT_EXTENSION",
@@ -27,10 +27,10 @@ export const ALL_CONFIG_FILE_EXTENSIONS: Record<ConfigFileFormat, string> = {
 export const ALL_CONFIG_FILES = Object.entries(
   ALL_CONFIG_FILE_EXTENSIONS
 ).reduce((prev, [key, value]) => {
-  return { ...prev, [key]: `.gator${value}` };
+  return { ...prev, [key]: `.hurl${value}` };
 }, {} as typeof ALL_CONFIG_FILE_EXTENSIONS);
 
 export const DEFAULT_CONFIG_FILE: ConfigFileContents = {
-  prefix: "__GATOR__",
+  prefix: "__HURL__",
   variables: {},
 };

@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/gator-org/gator/main/static/banner-light.png" width="800">
+<img src="https://raw.githubusercontent.com/hurl-org/hurl/main/static/banner-light.png" width="800">
 <p>
 
 <h2 align="center">Template File Generator</h2>
@@ -14,14 +14,14 @@
 ## Installation
 
 ```shell
-npm install -g @gator/cli
+npm install -g @hurl/cli
 ```
 
 ## Commands
 
 ### `init`
 
-Initialize Gator
+Initialize Hurl
 
 #### Options
 
@@ -39,23 +39,61 @@ Initialize Gator
 - Basic (with prompts & examples)
 
   ```shell
-  $ gator init
+  $ hurl init
+  ```
+
+  Resulting folder structure:
+
+  ```
+  project
+  │
+  └───.hurl
+  │   │   .hurl.<js|json|yml|ts>
+  │   │
+  │   └───templates
+  │       │   <language>-example.<js|ts>
+  │       │   <language>-example.<js|ts>
+  │       │   ...
   ```
 
 - Skip prompts
 
   ```shell
-  $ gator init -s
-  $ gator init --skip
-  $ gator init --skip=true
+  $ hurl init -s
+  $ hurl init --skip
+  $ hurl init --skip=true
+  ```
+
+  Resulting folder structure:
+
+  ```
+  project
+  │
+  └───.hurl
+  │   │   .hurl.json
+  │   │
+  │   └───templates
+  │       │   <empty>
   ```
 
 - Don't create example templates
 
   ```shell
-  $ gator init -e=false
-  $ gator init --examples=false
-  $ gator init --no-examples
+  $ hurl init -e=false
+  $ hurl init --examples=false
+  $ hurl init --no-examples
+  ```
+
+  Resulting folder structure:
+
+  ```
+  project
+  │
+  └───.hurl
+  │   │   .hurl.<js|json|yml|ts>
+  │   │
+  │   └───templates
+  │       │   <empty>
   ```
 
 ### `generate`
@@ -83,17 +121,17 @@ Generate files from a template
 - Create single file with no variables
 
   ```shell
-  $ gator generate -p example.js -t template.js
+  $ hurl generate -p example.js -t template.js
   ```
 
 - Create multiple files with no variables
 
   ```shell
-  $ gator generate -p example.js example2.js -t template.js
+  $ hurl generate -p example.js example2.js -t template.js
   ```
 
 - Create files with variables
 
   ```shell
-  $ gator generate -p example.js -t example.js --var=value
+  $ hurl generate -p example.js -t example.js --var=value
   ```

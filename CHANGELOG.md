@@ -1,4 +1,4 @@
-# Gator Changelog <!-- omit in toc -->
+# Hurl Changelog <!-- omit in toc -->
 
 All notable changes to this project will be documented in this file.
 

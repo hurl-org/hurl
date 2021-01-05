@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/gator-org/gator/main/static/banner-light.png" width="800">
+<img src="https://raw.githubusercontent.com/hurl-org/hurl/main/static/banner-light.png" width="800">
 <p>
 
 <h2 align="center">Template File Generator</h2>
@@ -15,9 +15,9 @@
 #### Installation
 
 ```shell
-npm install -g @gator/cli
+npm install -g @hurl/cli
 ```
 
 #### Documentation
 
-Refer to the [CLI documentation](https://github.com/gator-org/gator/tree/main/cli#readme)
+Refer to the [CLI documentation](https://github.com/hurl-org/hurl/tree/main/cli#readme)
