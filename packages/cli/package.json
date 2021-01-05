@@ -58,5 +58,6 @@
     "build": "ncc build src/hurl.ts -m",
     "start": "ncc build src/hurl.ts --watch",
     "test": "jest --passWithNoTests"
-  }
+  },
+  "gitHead": "30dbbaca3ba44a43817d9d744140d402118f57fb"
 }
