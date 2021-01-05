@@ -20,7 +20,7 @@
   "scripts": {
     "test": "lerna run test",
     "build": "lerna run build",
-    "install": "lerna exec -- npm ci",
+    "install": "npm ci && lerna exec -- npm ci",
     "version": "lerna version",
     "publish": "lerna publish from-package"
   }
