@@ -50,7 +50,10 @@
   "scripts": {
     "prepack": "scripts/prepack.sh",
     "postpack": "scripts/postpack.sh",
+    "prepublishOnly": "npm run build",
+    "preversion": "npm test",
     "build": "ncc build src/gator.ts -m",
-    "start": "ncc build src/gator.ts --watch"
+    "start": "ncc build src/gator.ts --watch",
+    "test": "jest --passWithNoTests"
   }
 }

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -f LICENSE.md
+rm -f LICENSE.md CHANGELOG.md
