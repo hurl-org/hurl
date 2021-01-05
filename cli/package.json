@@ -54,6 +54,7 @@
     "postpack": "scripts/postpack.sh",
     "prepublishOnly": "npm run build",
     "preversion": "npm test",
+    "postversion": "scripts/postversion.sh",
     "build": "ncc build src/hurl.ts -m",
     "start": "ncc build src/hurl.ts --watch",
     "test": "jest --passWithNoTests"
