@@ -19,6 +19,9 @@
   },
   "scripts": {
     "test": "jest",
-    "lerna": "lerna"
+    "version:patch": "lerna version patch",
+    "version:minor": "lerna version minor",
+    "version:major": "lerna version major",
+    "publish": "lerna publish from-package"
   }
 }
