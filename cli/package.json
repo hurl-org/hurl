@@ -10,6 +10,7 @@
   "bin": {
     "gator": "dist/index.js"
   },
+  "files": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/gator-org/gator.git"
@@ -47,8 +48,8 @@
     "@vercel/ncc": "^0.26.1"
   },
   "scripts": {
-    "prepublishOnly": "scripts/prepublish.sh",
-    "postpublish": "scripts/postpublish.sh",
+    "prepack": "scripts/prepack.sh",
+    "postpack": "scripts/postpack.sh",
     "build": "ncc build src/gator.ts -m",
     "start": "ncc build src/gator.ts --watch"
   }
