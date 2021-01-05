@@ -64,7 +64,7 @@ jobs:
         run: npm ci && npm run install
 
       - name: Set up
-        run: npm run gh-package-set-up
+        run: npm run gh-package-set-up -- ${{secrets.GH_PAT}}
 
       - name: Publish
         run: npm run publish -- --yes --registry https://npm.pkg.github.com/

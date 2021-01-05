@@ -5,8 +5,11 @@ const PACKAGES_PATH = "packages";
 
 const ghPackageSetUp = async () => {
   const packages = await readdir(PACKAGES_PATH);
+  const token = process.argv[2];
 
-  await Promise.all(
+  writeFile(".npmrc", `//npm.pkg.github.com/:_authToken=${token}`, "utf-8");
+
+  Promise.all(
     packages.map(async (pkg) => {
       const packagePath = (fromRoot: boolean) =>
         join(fromRoot ? "." : "..", PACKAGES_PATH, pkg, "package.json");
