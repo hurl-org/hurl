@@ -21,7 +21,7 @@ jobs:
           node-version: 15.x
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm run install
 
       - name: Build project
         run: npm run build
