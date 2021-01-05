@@ -67,6 +67,6 @@ jobs:
         run: npm run gh-package-set-up
 
       - name: Publish
-        run: npm publish -- --yes --registry https://npm.pkg.github.com/
+        run: npm run publish -- --yes --registry https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{secrets.GH_PAT}}
