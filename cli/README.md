@@ -13,8 +13,16 @@
 
 ## Installation
 
+Using [npm](https://www.npmjs.com):
+
 ```shell
 npm install -g @hurl/cli
+```
+
+Using [yarn](https://yarnpkg.com/):
+
+```shell
+yarn global add @hurl/cli
 ```
 
 ## Commands

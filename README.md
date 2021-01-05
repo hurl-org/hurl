@@ -2,20 +2,28 @@
 
 <h2 align="center">Hurl: <small>Template File Generator</small></h2>
 
-### Table of Contents <!-- omit in toc -->
+## Table of Contents <!-- omit in toc -->
 
 - [CLI](#cli)
   - [Installation](#installation)
   - [Documentation](#documentation)
 
-### CLI
+## CLI
 
-#### Installation
+### Installation
+
+Using [npm](https://www.npmjs.com):
 
 ```shell
 npm install -g @hurl/cli
 ```
 
-#### Documentation
+Using [yarn](https://yarnpkg.com/):
+
+```shell
+yarn global add @hurl/cli
+```
+
+### Documentation
 
 Refer to the [CLI documentation](https://github.com/hurl-org/hurl/tree/main/cli#readme)
