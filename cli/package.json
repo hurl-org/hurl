@@ -47,6 +47,8 @@
     "@vercel/ncc": "^0.26.1"
   },
   "scripts": {
+    "prepublishOnly": "scripts/prepublish.sh",
+    "postpublish": "scripts/postpublish.sh",
     "build": "ncc build src/gator.ts -m",
     "start": "ncc build src/gator.ts --watch"
   }
