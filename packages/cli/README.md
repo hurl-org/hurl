@@ -27,6 +27,8 @@ Using [yarn](https://yarnpkg.com/):
 yarn global add @hurl/cli
 ```
 
+<p align="center"><img src="https://raw.githubusercontent.com/hurl-org/hurl/main/packages/cli/static/installation-yarn.gif" alt="Yarn Installation GIF" width="400"></img></p>
+
 ## Commands
 
 ### `init`
