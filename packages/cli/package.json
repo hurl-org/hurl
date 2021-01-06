@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/hurl-org/hurl.git"
   },
+  "bugs": {
+    "url": "https://github.com/hurl-org/hurl/issues"
+  },
   "keywords": [
     "template",
     "templates",
@@ -29,9 +32,6 @@
     "javascript",
     "typescript"
   ],
-  "bugs": {
-    "url": "https://github.com/hurl-org/hurl/issues"
-  },
   "dependencies": {
     "@endemolshinegroup/cosmiconfig-typescript-loader": "^3.0.2",
     "chalk": "^4.1.0",
