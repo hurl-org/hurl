@@ -8,7 +8,7 @@
     "name": "Yash Totale"
   },
   "bin": {
-    "hurl": "dist/index.js"
+    "hurl": "dist/hurl.min.js"
   },
   "files": [],
   "repository": {
@@ -54,7 +54,7 @@
     "prepublishOnly": "npm run build",
     "preversion": "npm test",
     "postversion": "git push && git push --follow-tags",
-    "build": "ncc build src/hurl.ts -m",
+    "build": "scripts/build.sh",
     "start": "ncc build src/hurl.ts --watch",
     "test": "jest --passWithNoTests"
   }
