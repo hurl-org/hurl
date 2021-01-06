@@ -1,11 +1,12 @@
 import typescript from "@rollup/plugin-typescript";
 import replace from "@rollup/plugin-replace";
 import nodeResolve from "@rollup/plugin-node-resolve";
+import externals from "rollup-plugin-node-externals";
 import { terser } from "rollup-plugin-terser";
 
 const name = "hurl";
 
-const cjs = [
+export default [
   {
     input: "src/index.ts",
     output: {
@@ -16,6 +17,7 @@ const cjs = [
       entryFileNames: `${name}.js`,
     },
     plugins: [
+      externals(),
       nodeResolve(),
       typescript({ declaration: true, declarationDir: "cjs" }),
       replace({ "process.env.NODE_ENV": JSON.stringify("development") }),
@@ -29,6 +31,7 @@ const cjs = [
       sourcemap: true,
     },
     plugins: [
+      externals(),
       nodeResolve(),
       typescript(),
       replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
@@ -36,53 +39,3 @@ const cjs = [
     ],
   },
 ];
-
-const umd = [
-  {
-    input: "src/index.ts",
-    output: {
-      file: `umd/${name}.js`,
-      format: "umd",
-      name: "Hurl",
-    },
-    plugins: [
-      nodeResolve(),
-      typescript({ sourceMap: false }),
-      replace({
-        "process.env.NODE_ENV": JSON.stringify("development"),
-      }),
-    ],
-  },
-  {
-    input: "src/index.ts",
-    output: {
-      file: `umd/${name}.min.js`,
-      format: "umd",
-      name: "Hurl",
-    },
-    plugins: [
-      typescript({ sourceMap: false }),
-      nodeResolve(),
-      replace({
-        "process.env.NODE_ENV": JSON.stringify("production"),
-      }),
-      terser(),
-    ],
-  },
-];
-
-const createConfig = () => {
-  switch (process.env.BUILD_ENV) {
-    case "cjs": {
-      return [...cjs];
-    }
-    case "umd": {
-      return [...umd];
-    }
-    default: {
-      return [...cjs, ...umd];
-    }
-  }
-};
-
-export default createConfig();
