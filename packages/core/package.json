@@ -28,16 +28,12 @@
   "bugs": {
     "url": "https://github.com/hurl-org/hurl/issues"
   },
-  "dependencies": {},
-  "devDependencies": {},
   "scripts": {
     "prepack": "cp ../../LICENSE.md ./ && cp ../../CHANGELOG.md ./",
     "postpack": "rm -f LICENSE.md CHANGELOG.md",
     "prepublishOnly": "npm run build",
     "preversion": "npm test",
     "postversion": "git push && git push --follow-tags",
-    "build": "ncc build src/hurl.ts -m",
-    "start": "ncc build src/hurl.ts --watch",
     "test": "jest --passWithNoTests"
   }
 }
