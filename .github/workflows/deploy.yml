@@ -21,7 +21,7 @@ jobs:
           node-version: 15
 
       - name: Install Dependencies
-        run: npm ci && npm run install
+        run: npm run install:ci
 
       - name: Test
         run: npm test
@@ -40,7 +40,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install Dependencies
-        run: npm ci && npm run install
+        run: npm run install:ci
 
       - name: Publish
         run: npm run publish -- --yes
@@ -61,7 +61,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
 
       - name: Install Dependencies
-        run: npm ci && npm run install
+        run: npm run install:ci
 
       - name: Set up
         run: npm run gh-package-set-up -- ${{secrets.GH_PAT}}

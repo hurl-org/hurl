@@ -7,6 +7,10 @@
     "@babel/preset-typescript": "^7.12.7",
     "@types/jest": "^26.0.19",
     "@types/mock-fs": "^4.13.0",
+    "@types/js-yaml": "^3.12.5",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/rimraf": "^3.0.0",
+    "@types/yargs": "^15.0.12",
     "@types/node": "^14.14.16",
     "babel-jest": "^26.6.3",
     "jest": "^26.6.3",
@@ -20,9 +24,9 @@
   "scripts": {
     "test": "lerna run test",
     "build": "lerna run build",
-    "install": "lerna exec -- npm ci",
-    "version": "lerna version",
+    "install:ci": "npm ci && lerna exec -- npm ci",
     "gh-package-set-up": "ts-node scripts/gh-package-set-up.ts",
+    "version": "lerna version",
     "publish": "lerna publish from-package"
   }
 }

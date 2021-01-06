@@ -18,6 +18,7 @@ out/
 .env.test.local
 .env.production.local
 .eslintcache
+.npmrc
 
 CONFIDENTIAL.*
 
