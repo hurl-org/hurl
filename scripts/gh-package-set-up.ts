@@ -11,17 +11,20 @@ const ghPackageSetUp = async () => {
 
   Promise.all(
     packages.map(async (pkg) => {
-      const packagePath = (fromRoot: boolean) =>
-        join(fromRoot ? "." : "..", PACKAGES_PATH, pkg, "package.json");
+      try {
+        await readdir(join(PACKAGES_PATH, pkg));
+        const packagePath = (fromRoot: boolean) =>
+          join(fromRoot ? "." : "..", PACKAGES_PATH, pkg, "package.json");
 
-      let pkgObject = require(packagePath(false));
-      pkgObject.name = pkgObject.name.replace("@hurl/", "@hurl-org/");
+        let pkgObject = require(packagePath(false));
+        pkgObject.name = pkgObject.name.replace("@hurl/", "@hurl-org/");
 
-      await writeFile(
-        packagePath(true),
-        JSON.stringify(pkgObject, null, 2),
-        "utf-8"
-      );
+        await writeFile(
+          packagePath(true),
+          JSON.stringify(pkgObject, null, 2),
+          "utf-8"
+        );
+      } catch (e) {}
     })
   );
 };
