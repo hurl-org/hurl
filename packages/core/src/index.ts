@@ -1,3 +1,5 @@
+import { readdir } from "fs/promises";
+
 export class Hurl {
   dir: string;
 
@@ -5,8 +7,14 @@ export class Hurl {
     this.dir = dir ?? process.cwd();
   }
 
-  init() {
-    console.log("initializing");
+  async init() {
+    try {
+      const contents = await readdir(this.dir);
+      console.log(contents);
+    } catch (e) {
+      console.error(e);
+      process.exit(1);
+    }
   }
 
   generate() {

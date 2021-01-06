@@ -5,8 +5,8 @@ const cjs = async () => {
   try {
     await writeFile(
       join("cjs", "index.js"),
-      "'use strict';\n\nif (process.env.NODE_ENV === 'production') {\n  module.exports = require('./react-hash-scroll.min.js');" +
-        "\n} else {\n  module.exports = require('./react-hash-scroll.js');\n}"
+      "'use strict';\n\nif (process.env.NODE_ENV === 'production') {\n  module.exports = require('./hurl.min.js');" +
+        "\n} else {\n  module.exports = require('./hurl.js');\n}"
     );
   } catch (e) {
     console.log(e);
