@@ -26,4 +26,4 @@ yarn global add @hurl/cli
 
 ### Documentation
 
-Refer to the [CLI documentation](https://github.com/hurl-org/hurl/tree/main/cli#readme)
+Refer to the [CLI documentation](https://github.com/hurl-org/hurl/tree/main/packages/cli#readme)
