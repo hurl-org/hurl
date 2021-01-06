@@ -1,4 +1,4 @@
 #!/bin/bash
 
-git push
 git push --follow-tags
+git push
