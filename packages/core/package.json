@@ -1,14 +1,11 @@
 {
-  "name": "@hurl/cli",
+  "name": "@hurl/core",
   "version": "1.0.2",
-  "description": "Create template-generated files with ease from the Command Line",
+  "description": "Create template-generated files with ease",
   "license": "MIT",
   "homepage": "https://github.com/hurl-org/hurl#readme",
   "author": {
     "name": "Yash Totale"
-  },
-  "bin": {
-    "hurl": "dist/index.js"
   },
   "files": [],
   "repository": {
@@ -24,27 +21,15 @@
     "boilerplate",
     "skeleton",
     "hurl",
-    "cli",
-    "command-line",
+    "core",
     "javascript",
     "typescript"
   ],
   "bugs": {
     "url": "https://github.com/hurl-org/hurl/issues"
   },
-  "dependencies": {
-    "@endemolshinegroup/cosmiconfig-typescript-loader": "^3.0.2",
-    "chalk": "^4.1.0",
-    "cosmiconfig": "^7.0.0",
-    "enquirer": "^2.3.6",
-    "js-yaml": "^3.14.1",
-    "lodash.merge": "^4.6.2",
-    "rimraf": "^3.0.2",
-    "yargs": "^16.2.0"
-  },
-  "devDependencies": {
-    "@vercel/ncc": "^0.26.1"
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
     "prepack": "cp ../../LICENSE.md ./ && cp ../../CHANGELOG.md ./",
     "postpack": "rm -f LICENSE.md CHANGELOG.md",
