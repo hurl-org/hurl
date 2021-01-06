@@ -19,6 +19,9 @@
   "bugs": {
     "url": "https://github.com/hurl-org/hurl/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "template",
     "templates",
