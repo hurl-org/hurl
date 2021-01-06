@@ -19,7 +19,7 @@ Using [npm](https://www.npmjs.com):
 npm install -g @hurl/cli
 ```
 
-<img src="https://raw.githubusercontent.com/hurl-org/hurl/main/packages/cli/static/installation.gif" alt="NPM Installation GIF"></img>
+<p align="center"><img src="https://raw.githubusercontent.com/hurl-org/hurl/main/packages/cli/static/installation.gif" alt="NPM Installation GIF" width="400"></img></p>
 
 Using [yarn](https://yarnpkg.com/):
 
