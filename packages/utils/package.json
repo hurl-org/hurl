@@ -1,6 +1,6 @@
 {
   "name": "@hurl/utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Internal utilities for hurl packages",
   "license": "MIT",
   "homepage": "https://github.com/hurl-org/hurl#readme",

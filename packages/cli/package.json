@@ -1,6 +1,6 @@
 {
   "name": "@hurl/cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Create template-generated files with ease from the Command Line",
   "license": "MIT",
   "homepage": "https://github.com/hurl-org/hurl#readme",
