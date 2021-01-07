@@ -7,13 +7,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 **Table of Contents**
 
 - [Unreleased](#unreleased)
-- [[1.0.4] - (2020-01-07)](#104---2020-01-07)
+- [[1.0.4] - (2021-01-07)](#104---2021-01-07)
   - [Added](#added)
-- [[1.0.3] - (2020-01-06)](#103---2020-01-06)
+- [[1.0.3] - (2021-01-06)](#103---2021-01-06)
   - [Fixed](#fixed)
-- [[1.0.2] - (2020-01-05)](#102---2020-01-05)
+- [[1.0.2] - (2021-01-05)](#102---2021-01-05)
   - [Added](#added-1)
-- [[1.0.1] - (2020-01-04)](#101---2020-01-04)
+- [[1.0.1] - (2021-01-04)](#101---2021-01-04)
   - [Fixed](#fixed-1)
 - [[1.0.0] - (2021-01-04)](#100---2021-01-04)
 
@@ -21,13 +21,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ---
 
-## [1.0.4] - (2020-01-07)
+## [1.0.4] - (2021-01-07)
 
 ### Added
 
 - [utils][utils] package exports types, constants, and helpers
 
-## [1.0.3] - (2020-01-06)
+---
+
+## [1.0.3] - (2021-01-06)
 
 ### Fixed
 
@@ -35,7 +37,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ---
 
-## [1.0.2] - (2020-01-05)
+## [1.0.2] - (2021-01-05)
 
 ### Added
 
@@ -43,7 +45,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ---
 
-## [1.0.1] - (2020-01-04)
+## [1.0.1] - (2021-01-04)
 
 ### Fixed
 
