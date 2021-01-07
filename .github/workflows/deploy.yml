@@ -42,10 +42,14 @@ jobs:
       - name: Install Dependencies
         run: npm run install:ci
 
+      - name: Set up
+        run: npm run package-set-up
+        env:
+          NODE_PUBLISH_TYPE: npm
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
       - name: Publish
         run: npm run publish-packages -- --yes
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-gpr:
     needs: build
@@ -64,9 +68,10 @@ jobs:
         run: npm run install:ci
 
       - name: Set up
-        run: npm run gh-package-set-up -- ${{secrets.GH_PAT}}
+        run: npm run package-set-up
+        env:
+          NODE_PUBLISH_TYPE: gh-packages
+          NODE_AUTH_TOKEN: ${{secrets.GH_PAT}}
 
       - name: Publish
-        run: npm run publish-packages -- --yes --registry https://npm.pkg.github.com/
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GH_PAT}}
+        run: npm run publish-packages -- --registry https://npm.pkg.github.com/ --yes
