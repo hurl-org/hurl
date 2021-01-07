@@ -57,5 +57,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ---
 
+<!-- Start Reference Links -->
+
 [utils]: https://www.npmjs.com/package/@hurl/utils
 [core]: https://www.npmjs.com/package/@hurl/core

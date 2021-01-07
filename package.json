@@ -31,6 +31,7 @@
     "package-set-up": "ts-node scripts/package-set-up.ts",
     "postpackage-set-up": "git update-index --assume-unchanged packages/*/package.json",
     "version-bump": "lerna version",
+    "postversion-bump": "ts-node scripts/post-version-bump.ts",
     "publish-packages": "lerna publish from-package"
   }
 }
