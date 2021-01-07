@@ -47,7 +47,7 @@
     "prepublishOnly": "npm run build",
     "preversion": "npm test",
     "postversion": "git push && git push --follow-tags",
-    "start": "ncc build src/hurl.ts --out dist --watch",
+    "start": "ncc build src/hurl-utils.ts --out dist --watch",
     "build": "scripts/build.sh",
     "postbuild": "ts-node scripts/postbuild.ts",
     "test": "jest --passWithNoTests"
