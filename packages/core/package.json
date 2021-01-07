@@ -9,8 +9,7 @@
     "name": "Yash Totale"
   },
   "files": [
-    "cjs",
-    "umd"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -32,11 +31,14 @@
     "skeleton",
     "hurl",
     "core",
+    "node",
     "javascript",
     "typescript"
   ],
   "devDependencies": {
-    "@vercel/ncc": "^0.26.2"
+    "@types/recursive-readdir": "^2.2.0",
+    "@vercel/ncc": "^0.26.2",
+    "recursive-readdir": "^2.2.2"
   },
   "scripts": {
     "prepack": "cp ../../LICENSE.md ./ && cp ../../CHANGELOG.md ./",
@@ -44,6 +46,7 @@
     "prepublishOnly": "npm run build",
     "preversion": "npm test",
     "postversion": "git push && git push --follow-tags",
+    "start": "ncc build src/hurl.ts --out dist --watch",
     "build": "scripts/build.sh",
     "postbuild": "ts-node scripts/postbuild.ts",
     "test": "jest --passWithNoTests"
