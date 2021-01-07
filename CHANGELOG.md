@@ -7,13 +7,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 **Table of Contents**
 
 - [Unreleased](#unreleased)
+- [[1.0.3] - (2020-01-06)](#103---2020-01-06)
+  - [Fixed](#fixed)
 - [[1.0.2] - (2020-01-05)](#102---2020-01-05)
   - [Added](#added)
 - [[1.0.1] - (2020-01-04)](#101---2020-01-04)
-  - [Fixed](#fixed)
+  - [Fixed](#fixed-1)
 - [[1.0.0] - (2021-01-04)](#100---2021-01-04)
 
 ## Unreleased
+
+---
+
+## [1.0.3] - (2020-01-06)
+
+### Fixed
+
+- Build outputs for [`core`](https://www.npmjs.com/package/@hurl/core) and [`utils`](https://www.npmjs.com/package/@hurl/utils) packages
 
 ---
 
