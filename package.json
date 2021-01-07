@@ -28,6 +28,6 @@
     "gh-package-set-up": "ts-node scripts/gh-package-set-up.ts",
     "postgh-package-set-up": "git update-index --assume-unchanged packages/*/package.json",
     "version": "lerna version",
-    "publish": "lerna publish from-package"
+    "publish-packages": "lerna publish from-package"
   }
 }
