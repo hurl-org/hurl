@@ -36,9 +36,7 @@
     "typescript"
   ],
   "devDependencies": {
-    "@types/recursive-readdir": "^2.2.0",
-    "@vercel/ncc": "^0.26.2",
-    "recursive-readdir": "^2.2.2"
+    "@vercel/ncc": "^0.26.2"
   },
   "scripts": {
     "prepack": "cp ../../LICENSE.md ./ && cp ../../CHANGELOG.md ./",

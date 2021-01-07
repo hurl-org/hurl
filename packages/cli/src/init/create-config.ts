@@ -18,8 +18,6 @@ import { ConfigFileContents, ConfigFileFormat } from "../types";
 const createConfig = async (config: InitConfig) => {
   const { format, examples, ...rest } = config;
 
-  logger.success("Created .hurl directory!", `View: ./${HURL_PATH}`);
-
   const configFile = ALL_CONFIG_FILES[format];
   const configFilePath = join(HURL_PATH, configFile);
 

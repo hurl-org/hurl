@@ -37,9 +37,7 @@
     "typescript"
   ],
   "devDependencies": {
-    "@types/recursive-readdir": "^2.2.0",
-    "@vercel/ncc": "^0.26.2",
-    "recursive-readdir": "^2.2.2"
+    "@vercel/ncc": "^0.26.2"
   },
   "scripts": {
     "prepack": "cp ../../LICENSE.md ./ && cp ../../CHANGELOG.md ./",
@@ -51,5 +49,9 @@
     "build": "scripts/build.sh",
     "postbuild": "ts-node scripts/postbuild.ts",
     "test": "jest --passWithNoTests"
+  },
+  "dependencies": {
+    "@endemolshinegroup/cosmiconfig-typescript-loader": "^3.0.2",
+    "cosmiconfig": "^7.0.0"
   }
 }

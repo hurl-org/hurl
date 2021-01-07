@@ -1,9 +1,13 @@
 // Node
 import { join } from "path";
 import { writeFile, rm } from "fs/promises";
+import { exec } from "child_process";
+import { promisify } from "util";
 
 // Externals
 import recursive from "recursive-readdir";
+
+const execute = promisify(exec);
 
 const keepTypings = ["dist/index.d.ts"];
 
@@ -24,6 +28,7 @@ const postbuild = async () => {
         }
       });
     });
+    execute("find . -type d -empty -delete");
   } catch (e) {
     console.log(e);
     process.exit(1);

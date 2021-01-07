@@ -31,6 +31,7 @@ const init: Handler<InitArgs> = async (args) => {
     if (!skip) config = { ...config, ...(await configEnquirer(args)) };
 
     await mkdir(HURL_PATH);
+    logger.success("Created .hurl directory!", `View: ./${HURL_PATH}`);
 
     await createConfig(config);
 
