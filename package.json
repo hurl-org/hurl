@@ -36,6 +36,7 @@
   "scripts": {
     "test": "lerna run test",
     "build": "lerna run build",
+    "lint": "bash scripts/lint.sh",
     "install-all": "npm install && lerna exec -- npm install",
     "install:ci": "npm ci && lerna exec -- npm ci",
     "package-set-up": "ts-node scripts/package-set-up.ts",
