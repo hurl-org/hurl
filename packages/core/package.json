@@ -1,6 +1,6 @@
 {
   "name": "@hurl/core",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Create template-generated files with ease",
   "license": "MIT",
   "homepage": "https://github.com/hurl-org/hurl#readme",
