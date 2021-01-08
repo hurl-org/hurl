@@ -21,7 +21,6 @@
     "jest": "^26.6.3",
     "lerna": "^3.22.1",
     "mock-fs": "^4.13.0",
-    "moment": "^2.29.1",
     "recursive-readdir": "^2.2.2",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.1.1",
@@ -37,6 +36,7 @@
     "postpackage-set-up": "git update-index --assume-unchanged packages/*/package.json",
     "version-bump": "lerna version",
     "postversion-bump": "ts-node scripts/post-version-bump.ts",
-    "publish-packages": "lerna publish from-package"
+    "publish-packages": "lerna publish from-package",
+    "recreate-releases": "ts-node scripts/recreate-releases"
   }
 }
