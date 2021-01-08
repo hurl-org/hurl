@@ -10,8 +10,6 @@ coverage/
 # production
 dist/
 out/
-cjs/
-umd/
 
 # misc
 .DS_Store
