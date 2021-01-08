@@ -24,7 +24,7 @@ const ghPackageSetUp = async () => {
         const packagePath = (fromRoot: boolean) =>
           join(fromRoot ? "." : "..", PACKAGES_PATH, pkg, "package.json");
 
-        let pkgObject = require(packagePath(false));
+        const { default: pkgObject } = await import(packagePath(false));
         pkgObject.name = pkgObject.name.replace(toReplace, replaceWith);
 
         await writeFile(
@@ -32,7 +32,9 @@ const ghPackageSetUp = async () => {
           JSON.stringify(pkgObject, null, 2) + "\n",
           "utf-8"
         );
-      } catch (e) {}
+      } catch (e) {
+        //Should continue if pkg is not a directory rather than throwing
+      }
     })
   );
 };

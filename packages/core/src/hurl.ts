@@ -7,7 +7,7 @@ export class Hurl {
     this.dir = dir ?? process.cwd();
   }
 
-  async init() {
+  async init(): Promise<void> {
     try {
       const contents = await readdir(this.dir);
       console.log(contents);
@@ -17,7 +17,7 @@ export class Hurl {
     }
   }
 
-  generate() {
+  generate(): void {
     console.log("generating");
   }
 }

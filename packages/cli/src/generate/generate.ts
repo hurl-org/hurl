@@ -7,7 +7,7 @@ import { logger } from "../utils";
 // Types
 import { Handler } from "../types";
 
-interface GenerateArgs extends Record<string, any> {
+interface GenerateArgs extends Record<string, unknown> {
   paths: string[];
   template: string;
   confirm: boolean;
@@ -22,7 +22,8 @@ const generate: Handler<GenerateArgs> = async (args) => {
   try {
     const { config } = await readConfig();
 
-    let { paths, template, confirm, p, t, _, $0, ...vars } = args;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { paths, template, confirm, p, t, _, $0, ...vars } = args;
 
     const [
       parsedTemplate,

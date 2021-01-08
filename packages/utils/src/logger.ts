@@ -25,27 +25,27 @@ const FgYellow = "\x1b[33m";
 // const BgWhite = "\x1b[47m";
 
 const logger = {
-  green: (str: string) => {
+  green: (str: string): string => {
     return FgGreen + str + Reset;
   },
-  red: (str: string) => {
+  red: (str: string): string => {
     return FgRed + str + Reset;
   },
-  yellow: (str: string) => {
+  yellow: (str: string): string => {
     return FgYellow + str + Reset;
   },
-  success: (str: string, extra = "") => {
+  success: (str: string, extra = ""): void => {
     const colored = logger.green(str) + " " + extra;
     logger.line(colored);
   },
-  error: (err: Error) => {
+  error: (err: Error): void => {
     logger.line(logger.red("Hurl ERROR"));
     console.error(err);
   },
-  warn: (warning: string) => {
+  warn: (warning: string): void => {
     logger.line(logger.yellow(warning), console.warn);
   },
-  line: (str: string, func = console.log) => {
+  line: (str: string, func = console.log): void => {
     func(`\n${str}`);
   },
 };

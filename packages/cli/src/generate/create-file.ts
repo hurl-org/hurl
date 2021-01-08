@@ -12,14 +12,17 @@ import { DEFAULT_VARIABLES } from "../constants";
 // Types
 import { ConfigFileContents } from "../types";
 
-interface CreateFileArgs extends Record<string, any> {
+interface CreateFileArgs extends Record<string, unknown> {
   template: Pick<ParsedPath, "name" | "base">;
   templateContents: string;
   path: ParsedPath;
   confirm: boolean;
 }
 
-const createFile = async (config: ConfigFileContents, args: CreateFileArgs) => {
+const createFile = async (
+  config: ConfigFileContents,
+  args: CreateFileArgs
+): Promise<void> => {
   const { template, templateContents, path, confirm, ...vars } = args;
   const { prefix } = config;
 

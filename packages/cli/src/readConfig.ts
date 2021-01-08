@@ -16,7 +16,10 @@ import {
 // Types
 import { ConfigFileContents } from "./types";
 
-const readConfig = async () => {
+const readConfig = async (): Promise<{
+  config: ConfigFileContents;
+  filepath: string;
+}> => {
   try {
     await readdir(HURL_PATH);
   } catch (e) {
@@ -49,9 +52,6 @@ const readConfig = async () => {
       ...DEFAULT_CONFIG_FILE,
       ...result.config,
     },
-  } as {
-    config: ConfigFileContents;
-    filepath: string;
   };
 };
 

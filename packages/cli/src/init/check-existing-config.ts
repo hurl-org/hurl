@@ -11,7 +11,7 @@ import { logger } from "../utils";
 // Constants
 import { HURL_PATH } from "../constants";
 
-const checkExistingConfig = async () => {
+const checkExistingConfig = async (): Promise<void> => {
   try {
     await readdir(HURL_PATH); // Will throw error if it doesn't exist
 
@@ -25,10 +25,12 @@ const checkExistingConfig = async () => {
       logger.error(e);
       process.exit(1);
     }
-  } catch (e) {}
+  } catch (e) {
+    // Continue if no existing directory
+  }
 };
 
-export const confirmDelete = async () => {
+export const confirmDelete = async (): Promise<void> => {
   const response = await prompt<{ proceed: boolean }>({
     name: "proceed",
     type: "confirm",

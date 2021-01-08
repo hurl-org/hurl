@@ -15,7 +15,8 @@ import { ALL_CONFIG_FILES, HURL_PATH } from "../constants";
 import { InitConfig } from "./types";
 import { ConfigFileContents, ConfigFileFormat } from "../types";
 
-const createConfig = async (config: InitConfig) => {
+const createConfig = async (config: InitConfig): Promise<void> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { format, examples, ...rest } = config;
 
   const configFile = ALL_CONFIG_FILES[format];

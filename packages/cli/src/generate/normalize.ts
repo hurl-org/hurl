@@ -44,7 +44,7 @@ export const normalizeTemplate = async (
   }
 };
 
-export const findTemplate = async (template: string) => {
+export const findTemplate = async (template: string): Promise<string> => {
   const templates = await readdir(TEMPLATES_PATH);
 
   const { name: templateName, ext: templateExt } = parse(template);
@@ -61,7 +61,9 @@ export const findTemplate = async (template: string) => {
   return join(TEMPLATES_PATH, templateBase);
 };
 
-export const findTemplateFile = async (templatePath: string) => {
+export const findTemplateFile = async (
+  templatePath: string
+): Promise<string> => {
   const files = await readdir(templatePath, "utf-8");
 
   const templateFile = files.find((file) => parse(file).name === "template");
@@ -77,7 +79,7 @@ export const findTemplateFile = async (templatePath: string) => {
 export const findConfig = async (
   config: ConfigFileContents,
   templatePath: string
-) => {
+): Promise<ConfigFileContents> => {
   const explorer = cosmiconfig("config", {
     searchPlaces: Object.values(ALL_CONFIG_FILE_EXTENSIONS).map(
       (ext) => `config${ext}`

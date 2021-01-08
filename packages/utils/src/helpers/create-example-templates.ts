@@ -15,7 +15,7 @@ const createExampleTemplates = async (
   examples: Example[],
   templatesDir: string,
   config: ConfigFileContents
-) => {
+): Promise<void> => {
   examples.forEach((example) => createTemplate(example, templatesDir, config));
 };
 

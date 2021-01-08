@@ -30,7 +30,7 @@ export class HurlUtils {
     this.templatesDir = join(this.hurlDir, "templates");
   }
 
-  changeDir(dir: string) {
+  changeDir(dir: string): void {
     this.dir = dir;
   }
 
@@ -56,7 +56,10 @@ export class HurlUtils {
     }
   }
 
-  async getConfig() {
+  async getConfig(): Promise<{
+    config: ConfigFileContents;
+    filepath: string;
+  }> {
     const explorer = cosmiconfig("hurl", {
       searchPlaces: Object.values(ALL_CONFIG_FILES),
       loaders: { ".ts": TypeScriptLoader },
@@ -73,9 +76,6 @@ export class HurlUtils {
         ...DEFAULT_CONFIG_FILE,
         ...result.config,
       },
-    } as {
-      config: ConfigFileContents;
-      filepath: string;
     };
   }
 
@@ -92,11 +92,9 @@ export class HurlUtils {
   async createExampleTemplates(
     examples: Example[],
     config: ConfigFileContents
-  ) {
+  ): Promise<void> {
     createExampleTemplates(examples, this.templatesDir, config);
   }
-
-  createConfig() {}
 }
 
 export { default as logger } from "./logger";

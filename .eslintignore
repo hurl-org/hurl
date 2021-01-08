@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# testing
+coverage/
+.hurl
+
+# production
+dist/
+out/
+cjs/
+umd/
+
+# misc
+npm-debug.log*

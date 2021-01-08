@@ -15,7 +15,7 @@ interface PromptResults {
   examples?: Example[];
 }
 
-const configEnquirer = async (args: InitArgs) => {
+const configEnquirer = async (args: InitArgs): Promise<PromptResults> => {
   const { examples } = args;
 
   const questions: Parameters<typeof prompt>[0] = [

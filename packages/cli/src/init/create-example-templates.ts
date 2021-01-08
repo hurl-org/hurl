@@ -11,8 +11,8 @@ import { DEFAULT_VARIABLES, TEMPLATES_PATH } from "../constants";
 // Types
 import { InitConfig, Example } from "./types";
 
-const createExampleTemplates = async (config: InitConfig) => {
-  config.examples!.forEach((example) => createTemplate(example, config));
+const createExampleTemplates = async (config: InitConfig): Promise<void> => {
+  config.examples?.forEach((example) => createTemplate(example, config));
 };
 
 const createTemplate = async (example: Example, config: InitConfig) => {
