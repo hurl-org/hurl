@@ -43,7 +43,9 @@ jobs:
         run: npm run install:ci
 
       - name: Set up
-        run: npm run package-set-up
+        run: |
+          npm run package-set-up
+          echo //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN} > .npmrc
         env:
           NODE_PUBLISH_TYPE: npm
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
@@ -68,7 +70,9 @@ jobs:
         run: npm run install:ci
 
       - name: Set up
-        run: npm run package-set-up
+        run: |
+          npm run package-set-up
+          echo //npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN} > .npmrc
         env:
           NODE_PUBLISH_TYPE: gh-packages
           NODE_AUTH_TOKEN: ${{secrets.GH_PAT}}
