@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# testing
+coverage/
+.hurl
+
+# production
+dist/
+out/
+
+# misc
+npm-debug.log*

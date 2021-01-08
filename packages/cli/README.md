@@ -49,12 +49,12 @@ Initialize Hurl
 - Basic (with prompts & examples)
 
   ```shell
-  $ hurl init
+  hurl init
   ```
 
   Resulting folder structure:
 
-  ```
+  ```text
   project
   │
   └───.hurl
@@ -69,14 +69,14 @@ Initialize Hurl
 - Skip prompts
 
   ```shell
-  $ hurl init -s
-  $ hurl init --skip
-  $ hurl init --skip=true
+  hurl init -s
+  hurl init --skip
+  hurl init --skip=true
   ```
 
   Resulting folder structure:
 
-  ```
+  ```text
   project
   │
   └───.hurl
@@ -89,14 +89,14 @@ Initialize Hurl
 - Don't create example templates
 
   ```shell
-  $ hurl init -e=false
-  $ hurl init --examples=false
-  $ hurl init --no-examples
+  hurl init -e=false
+  hurl init --examples=false
+  hurl init --no-examples
   ```
 
   Resulting folder structure:
 
-  ```
+  ```text
   project
   │
   └───.hurl
@@ -131,17 +131,17 @@ Generate files from a template
 - Create single file with no variables
 
   ```shell
-  $ hurl generate -p example.js -t template.js
+  hurl generate -p example.js -t template.js
   ```
 
 - Create multiple files with no variables
 
   ```shell
-  $ hurl generate -p example.js example2.js -t template.js
+  hurl generate -p example.js example2.js -t template.js
   ```
 
 - Create files with variables
 
   ```shell
-  $ hurl generate -p example.js -t example.js --var=value
+  hurl generate -p example.js -t example.js --var=value
   ```
