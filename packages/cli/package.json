@@ -43,7 +43,7 @@
     "js-yaml": "^3.14.1",
     "lodash.merge": "^4.6.2",
     "rimraf": "^3.0.2",
-    "yargs": "^16.2.0"
+    "yargs": "^17.5.1"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.27.0"
